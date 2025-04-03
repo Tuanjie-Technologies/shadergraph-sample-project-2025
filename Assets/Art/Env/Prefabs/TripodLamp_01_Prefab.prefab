@@ -1,0 +1,164 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!1001 &7721103910048540227
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1251655184479844714, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1251655184479844714, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -337736420611201189, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -337736420611201189, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_Name
+      value: TripodLamp_01_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364340462808143139, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364340462808143139, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664354874373535104, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956658745078550073, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956658745078550073, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8217183374693152784, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -5697346001691764218, guid: fd8ba110d3ec8ae448c32d6dac57e782, type: 3}
+    - {fileID: -8825378742045857995, guid: fd8ba110d3ec8ae448c32d6dac57e782, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8217183374693152784, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3289725645842392966}
+  m_SourcePrefab: {fileID: 100100000, guid: fd8ba110d3ec8ae448c32d6dac57e782, type: 3}
+--- !u!1 &1814831521371397715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8217183374693152784, guid: fd8ba110d3ec8ae448c32d6dac57e782,
+    type: 3}
+  m_PrefabInstance: {fileID: 7721103910048540227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3289725645842392966
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814831521371397715}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8659468928224242228, guid: fd8ba110d3ec8ae448c32d6dac57e782, type: 3}

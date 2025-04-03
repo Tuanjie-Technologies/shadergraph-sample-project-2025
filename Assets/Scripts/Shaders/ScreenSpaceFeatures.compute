@@ -1,0 +1,802 @@
+#pragma kernel InitialDepth DepthGenerator=InitialDepth INITIAL_DEPTH
+#pragma kernel HiZDepth DepthGenerator=HiZDepth
+
+#pragma kernel ResolveLastFrame
+#pragma kernel SSR_Raymarching
+#pragma kernel SSR_Resolve
+#pragma kernel SSR_TemporalBlending
+#pragma kernel SSR_BilateralBlur
+#pragma kernel TemporalClipping
+#pragma kernel BilateralUpsampling
+
+#pragma kernel SSAO
+#pragma kernel BilateralBlurHorizontal BilateralBlur=BilateralBlurHorizontal BILATERAL_BLUR_H
+#pragma kernel BilateralBlurVertical BilateralBlur=BilateralBlurVertical BILATERAL_BLUR_V
+
+#pragma kernel CopyColor Copy=CopyColor COPY_COLOR
+#pragma kernel CopySingleChannel Copy=CopySingleChannel COPY_SINGLE_CHANNEL
+
+#pragma kernel BloomPrefilter
+#pragma kernel BloomBlurH BloomBlur=BloomBlurH BLOOM_BLUR_H
+#pragma kernel BloomBlurV BloomBlur=BloomBlurV BLOOM_BLUR_V
+#pragma kernel BloomUpsampling
+
+#pragma kernel Taa PostProcessing=Taa TAA
+#pragma kernel Tonemapping PostProcessing=Tonemapping TONEMAPPING
+#pragma kernel Bloom PostProcessing=Bloom BLOOM
+#pragma kernel Adjustments PostProcessing=Adjustments COLOR_ADJUSTMENTS
+#pragma kernel InactiveAdjustments PostProcessing=InactiveAdjustments BLOOM TONEMAPPING
+#pragma kernel InactiveBloom PostProcessing=InactiveBloom COLOR_ADJUSTMENTS TONEMAPPING
+#pragma kernel InactiveTonemapping PostProcessing=InactiveTonemapping BLOOM COLOR_ADJUSTMENTS
+#pragma kernel Composite PostProcessing=Composite BLOOM TONEMAPPING COLOR_ADJUSTMENTS
+
+#pragma kernel LutPrepare
+//#pragma kernel NewLUT LutPrepare=NewLUT NEW_LUT
+
+
+#pragma multi_compile _ _GBUFFER_NORMALS_OCT
+
+#include "ScreenSpaceFeaturesInput.hlsl"
+
+[numthreads(8,8,1)]
+void DepthGenerator (uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy >= uint2(_HiZDepthParams.xy)))
+        return;
+
+#if INITIAL_DEPTH
+    _HiZDepthBuffer[id.xy] = _CameraDepthTexture.Load(uint3(id.xy, 0)).x;
+#else
+    uint2 offsets[3] = { int2(0, 1), uint2(1, 0), uint2(1, 1) };
+    uint2 ID = id.xy * 2;
+
+    float depth0 = _InputDepthTexture.Load(uint2(ID)).x;
+    float minDepth = depth0;
+    float maxDepth = depth0;
+
+    for(int i = 0; i <3; i++)
+    {
+        float depth = _InputDepthTexture.Load(uint2(ID + offsets[i])).x;
+        minDepth = min(depth, minDepth);
+        maxDepth = max(depth, maxDepth);
+    }
+    #if UNITY_REVERSED_Z
+        float temp = minDepth;
+        minDepth = maxDepth;
+        maxDepth = temp;
+    #endif
+    _HiZDepthBuffer[id.xy] = minDepth;
+#endif
+    return;
+}
+
+[numthreads(8, 8, 1)]
+void ResolveLastFrame (uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy  >= uint2(_ResolveParams.xy)))
+        return;
+
+    float2 uv = (id.xy + 0.5f) / _ResolveParams.xy;
+    float2 motionVector = SAMPLE_TEXTURE2D_LOD(_MotionVectorTexture, s_point_clamp_sampler, uv, 0).xy;
+    if (length(motionVector) <= 0)
+    {
+        _OutputBuffer[id.xy] = float4(SAMPLE_TEXTURE2D_LOD(_HistoryTexture, s_point_clamp_sampler, uv, 0).xyz, 1);
+        return;
+    }
+
+    float2 historyUV = uv - motionVector;
+    float4 history = 0;
+    float weight = 0;
+    int count = 0;
+    if (historyUV.x >= 0 && historyUV.y >= 0 && historyUV.x < 1 && historyUV.y < 1)
+    {
+        float depth = SAMPLE_TEXTURE2D_LOD(_HiZDepthTexture, s_point_clamp_sampler, uv, 0).x;
+        float linearDepth = Linear01Depth(depth, _ZBufferParams);
+
+        bool validHistory = false;
+        static const float YScalar = _ResolveParams.x / _ResolveParams.y;
+        static const float2 offsets[9] =
+        {
+            float2(0, 0),
+            float2(0, -_ResolveParams.w * YScalar),
+            float2(0, _ResolveParams.w * YScalar),
+            float2(_ResolveParams.z, 0),
+            float2(-_ResolveParams.z, 0),
+            float2(-_ResolveParams.z, -_ResolveParams.w * YScalar),
+            float2(_ResolveParams.z, -_ResolveParams.w * YScalar),
+            float2(-_ResolveParams.z, _ResolveParams.w * YScalar),
+            float2(_ResolveParams.z, _ResolveParams.w * YScalar)
+        };
+
+        float3 closestHistory = 0;
+        float minDiff = 10000;
+        for (int i = 0; i < 9; i++)
+        {
+            float2 neighbourUV = historyUV + offsets[i];
+            if (neighbourUV.x >= 0 && neighbourUV.y >= 0 && neighbourUV.x < 1 && neighbourUV.y < 1)
+            {
+                float neighbourDepth = SAMPLE_TEXTURE2D_LOD(_HistoryDepthTexture, s_point_clamp_sampler, neighbourUV.xy, 0).x;
+                float linearNeighbourDepth = Linear01Depth(neighbourDepth, _ZBufferParams);
+                float diff = abs(linearDepth - linearNeighbourDepth);
+
+                if (diff < 0.1 * linearDepth)
+                {                  
+                    float3 neighbourOpaque = SAMPLE_TEXTURE2D_LOD(_HistoryTexture, s_point_clamp_sampler, neighbourUV.xy, 0).xyz;  
+                    validHistory = true;
+                    half currentWeight = saturate(1 - diff);
+                    weight += currentWeight;
+                    history.xyz += neighbourOpaque.xyz * currentWeight;
+                    count += 1;
+                    if (diff < minDiff)
+                    {
+                        minDiff = diff;
+                        closestHistory = neighbourOpaque.xyz;
+                    }
+                }
+            }
+        }
+        if (validHistory)
+        {
+            if (minDiff <= 0.0001f)
+            {
+                history.xyz = closestHistory.xyz;
+                history.w = 1;
+            }
+            else
+            {
+                history.xyz /= weight;
+                weight /= float(count);
+                history.w = saturate(weight);
+            }
+            history.w = saturate(history.w);
+            history.xyz = min(history.xyz, 1024);
+        }
+    }
+
+    _OutputBuffer[id.xy] = history;
+}
+
+[numthreads(8, 8, 1)]
+void SSR_Raymarching (uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy  >= uint2(_SSRTexParams.xy)))
+        return;
+
+    uint2 realID = id.xy << (uint)_DownSampleTracing;
+    if (_DownSampleTracing > 0.5f)
+    {
+        uint2 offset = uint2(_SubIndex & 0x1, _SubIndex / uint(2));
+        realID += offset; 
+    }    
+    float2 uv = (float2(realID) + 0.5f) / float2(_ScaledScreenParams.xy);
+    float depth = _HiZDepthTexture[realID].x;
+    if (depth <= 0)
+    {  
+        _TracedResult[id.xy] = half4(0, 0, 0, 0);
+        return;
+    }
+
+    // reconstruct world pos
+    half3 worldPos = GetWorldPositionFromDepth(depth, uv);
+    float3 viewDirWS = normalize(_WorldSpaceCameraPos.xyz - worldPos.xyz);
+    
+    // get data
+    half4 normalBuffer = _CameraNormalsTexture[realID];
+    half3 normalWS = GetNormalFromBuffer(normalBuffer.xyz);
+    half roughness = 1 - normalBuffer.a;
+    half3 offsetedPos = _WorldSpaceCameraPos.xyz + (worldPos - _WorldSpaceCameraPos.xyz) * (1.0f - 0.001f * rcp(max(dot(normalWS, viewDirWS), FLT_EPS)));
+    depth = GetPositionSS(offsetedPos).z;
+    if (depth <= 0)
+    {
+        _TracedResult[id.xy] = half4(0, 0, 0, 0);
+        return;
+    }
+
+    // noise
+    half4 blueNoise = SAMPLE_TEXTURE2D_LOD(_BlueNoise, s_point_repeat_sampler, float2(id.xy) * _BlueNoiseParams.zw, 0);
+    
+    float4 tracedResult = 0;
+    float PDF = SSR(viewDirWS, normalWS, offsetedPos.xyz, depth, realID, blueNoise.xy, roughness, tracedResult);
+
+    _TracedResult[id.xy] = tracedResult;
+    return;
+}
+
+static const float2 offsets[9] =
+{
+	float2(0, 0),
+	float2(sqrt(2), -sqrt(2)),
+	float2(-sqrt(2), -sqrt(2)),
+	float2(sqrt(2), sqrt(2)),
+    float2(-sqrt(2), sqrt(2)),
+    float2(2, 0),
+    float2(-2, 0),
+    float2(0, 2),
+    float2(0, -2)
+};
+
+[numthreads(8, 8, 1)]
+void SSR_Resolve (uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy  >= uint2(_SSRTexParams.xy)))
+        return;
+ 
+    float2 uv = (float2(id.xy) + 0.5f) * _SSRTexParams.zw;
+    float depth = SAMPLE_TEXTURE2D_LOD(_HiZDepthTexture, s_point_clamp_sampler, uv, 0).x;
+    if (depth <= 0)
+    {  
+        _TracedResult[id.xy] = 0;
+        return;
+    }
+
+    float4 result = 0.0;
+    float weightSum = 0.0;	
+    float centerZ = 0;
+    for(int i = 0; i < 9; i++)
+    {
+        float2 offset = offsets[i];
+        float2 neighbourUV = uv + RotateVector(_PreBlurRotator, offset.xy * 0.5) * _SSRTexParams.zw;
+
+
+        float4 hitPacked = SAMPLE_TEXTURE2D_LOD(_InputTexture, s_point_clamp_sampler, neighbourUV, 0);
+        float2 hitUV = hitPacked.xy;
+        float hitZ = hitPacked.z;
+        float hitMask = hitPacked.w;
+        if (i == 0)
+            centerZ = hitZ;
+        if (hitMask > 0 && hitZ > 0 && hitZ < 1)
+        {
+            float4 sampledColor = SAMPLE_TEXTURE2D_LOD(_ResolvedOpaqueTex, sampler_linear_clamp, hitUV, 0);
+            if (sampledColor.w > 0)
+            {
+                result += float4(sampledColor.xyz, hitMask * EdgeFade(hitUV)) * sampledColor.w * saturate(1 - 100 * abs(centerZ - hitZ));
+                weightSum += sampledColor.w * saturate(1 - 100 * abs(centerZ - hitZ));
+            }
+
+        }
+    }
+
+    if (weightSum > 0)
+    {
+        result /= weightSum;
+        result.xyz = min(result.xyz, 1024);
+        result.w = saturate(result.w);
+    }
+
+    _TracedResult[id.xy] = result;
+    return;
+}
+
+[numthreads(8,8,1)]
+void SSR_TemporalBlending (uint3 id : SV_DispatchThreadID, uint3 groupId : SV_GroupId, uint groupIndex : SV_GroupIndex, uint3 groupThreadId : SV_GroupThreadID)
+{    
+    if (any(id.xy  >= uint2(_DenoiserParams.xy)))
+        return;
+
+
+    float2 uv = (float2(id.xy) + 0.5f) / float2(_DenoiserParams.xy);
+    float depth = SAMPLE_TEXTURE2D_LOD(_HiZDepthTexture, s_point_clamp_sampler, uv, 0).x;
+    if (depth == 0)
+    {
+        _OutputBuffer[id.xy] = 0;
+        _AccumBuffer[id.xy] = 0;
+        return;
+    }
+    float4 blendedColor = _InputTexture[id.xy];
+
+    float validHistory = SAMPLE_TEXTURE2D_LOD(_ResolvedOpaqueTex, s_point_clamp_sampler, uv, 0).w;
+    half accum = 0;
+    if (validHistory > 0)
+    {
+        float2 motionVector = SAMPLE_TEXTURE2D_LOD(_MotionVectorTexture, s_point_clamp_sampler, uv, 0).xy;
+        float4 viewMotion = mul(UNITY_MATRIX_I_P, float4(motionVector.xy, depth, 0.0f));
+        viewMotion /= viewMotion.w;
+        float motionSpeed = saturate(8 * length(viewMotion.xyz));
+        float2 hisotryUV = uv - motionVector;
+        float4 previous = SAMPLE_TEXTURE2D_LOD(_HistoryTexture, s_point_clamp_sampler, hisotryUV, 0);
+        half historyAccum = SAMPLE_TEXTURE2D_LOD(_AccumTexture, s_point_clamp_sampler, hisotryUV, 0).x * 32.0f;
+        accum = validHistory * max(min(historyAccum + 1, 32), 0) * saturate(1 - motionSpeed);
+
+        half4 normalBuffer =  SAMPLE_TEXTURE2D_LOD(_CameraNormalsTexture, s_point_clamp_sampler, uv, 0);
+        half roughness = 1 - normalBuffer.a;
+        float prevDepth = SAMPLE_TEXTURE2D_LOD(_HistoryDepthTexture, s_point_clamp_sampler, hisotryUV, 0).x;
+        half3 prevPos = GetPrevWorldPositionFromDepth(prevDepth, hisotryUV);
+        half3 worldPos = GetWorldPositionFromDepth(depth, uv);
+        half3 viewDirWS = normalize(_WorldSpaceCameraPos.xyz - worldPos.xyz);
+        half3 prevViewDir = normalize(_PrevCamPos.xyz - prevPos);
+        half cosa = saturate(dot(viewDirWS, prevViewDir));
+        accum *= cosa;
+        float accumFactor = accum * max(0.1f, roughness);
+
+
+        blendedColor.xyz /= (1 + Luminance(blendedColor.xyz));
+        previous.xyz /= (1 + Luminance(previous.xyz));
+        blendedColor = lerp(blendedColor, previous, saturate(1 - (1 / (1 + accumFactor))));
+        blendedColor.xyz /= (1 - Luminance(blendedColor.xyz));
+        blendedColor.xyz = min(blendedColor.xyz, 1024);
+    }
+    _OutputBuffer[id.xy] = blendedColor;
+    _AccumBuffer[id.xy] = accum / 32.0f;
+}
+
+[numthreads(32, 32, 1)]
+void SSR_BilateralBlur (uint3 id : SV_DispatchThreadID, uint3 groupId : SV_GroupId, uint groupIndex : SV_GroupIndex, uint3 groupThreadId : SV_GroupThreadID)
+{
+    if (any(id.xy >= uint2(_DenoiserParams.xy)))
+    {
+        _OutputBuffer[id.xy] = float4(0, 0, 0, 0);
+        return;
+    }
+    float2 uv = (id.xy + 0.5f) / _DenoiserParams.xy;
+
+    // center Data
+    BilateralData centerData = GetBilateralData(uv);
+
+    // skip invalid pixel
+    if (centerData.invalid)
+    {
+        _OutputBuffer[id.xy] = float4(0, 0, 0, 0);
+        return;
+    }
+    half3 viewDirWS = normalize(_WorldSpaceCameraPos.xyz - centerData.posWS.xyz);
+    half accumFactor = saturate(_AccumTexture[id.xy].x);
+
+    float blurRadius = centerData.roughness * 0.15f * saturate(1 - accumFactor);
+    float4 irradiance = 0;
+    if (blurRadius > 0)
+    {
+        half4 dominantWS = GetSpecularDominantDirection(centerData.normal, viewDirWS, centerData.roughness);
+    
+        half2x3 localToWorld = GetKernelBasis(dominantWS.xyz, centerData.normal, centerData.roughness);
+        localToWorld[0] *= blurRadius;
+        localToWorld[1] *= blurRadius;
+        float weight = 0;
+
+        for (int i = 0; i < POISSON_SAMPLE_COUNT; i++)
+        {
+            float3 offset = k_PoissonDiskSamples[i];
+    
+            float2 neighbourUV = GetKernelSampleCoordinates(offset, centerData.posWS, localToWorld[0], localToWorld[1], _BlurRotator);
+            
+            BilateralData neighbourData = GetBilateralData(neighbourUV.xy);
+            if (neighbourData.invalid)
+                continue;
+            
+            float valueWeight = GetGaussianWeight(offset.z);
+            valueWeight *= GetBilateralValue(centerData, neighbourData);
+    
+            irradiance += neighbourData.irradiance * valueWeight;
+            weight += valueWeight;
+        }
+    
+        if (weight > 0)
+        {
+            irradiance /= weight;
+            irradiance.xyz = min(irradiance.xyz, 1024);
+        }
+        else
+            irradiance = centerData.irradiance; 
+    }
+    else
+        irradiance = centerData.irradiance;
+
+    _OutputBuffer[id.xy] = irradiance;
+}
+
+[numthreads(8,8,1)]
+void TemporalClipping (uint3 id : SV_DispatchThreadID, uint3 groupId : SV_GroupId, uint groupIndex : SV_GroupIndex, uint3 groupThreadId : SV_GroupThreadID)
+{    
+    if (any(id.xy >= uint2(_DenoiserParams.xy)))
+        return;
+        
+    float2 uv = ((float2)id.xy + 0.5f) / float2(_DenoiserParams.xy);
+    float4 original = _InputTexture[id.xy];
+
+    float depth = SAMPLE_TEXTURE2D_LOD(_HiZDepthTexture, s_point_clamp_sampler, uv, 0).x;
+    if (depth == 0)
+    {
+        _OutputBuffer[id.xy] = 0;
+        return;
+    }
+    half3 worldPos = GetWorldPositionFromDepth(depth, uv);
+    half3 viewDirWS = normalize(_WorldSpaceCameraPos.xyz - worldPos.xyz);
+    if (_SingleChannel < 1)
+        original.xyz = RGBToYCoCg(original.xyz);
+    float4 blendedColor = original;
+    float2 motionVector = SAMPLE_TEXTURE2D_LOD(_MotionVectorTexture, s_point_clamp_sampler, uv, 0).xy;
+    float2 historyUV = uv - motionVector;
+    float4 previous = SAMPLE_TEXTURE2D_LOD(_HistoryTexture, s_point_clamp_sampler, historyUV, 0);
+    if (_SingleChannel < 1)
+        previous.xyz = RGBToYCoCg(previous.xyz);
+    static const float YScalar = _DenoiserParams.x / _DenoiserParams.y;
+    static const float2 offsets[8] =
+    {
+        float2(0, -_DenoiserParams.w * YScalar),
+        float2(0, _DenoiserParams.w * YScalar),
+        float2(_DenoiserParams.z, 0),
+        float2(-_DenoiserParams.z, 0),
+        float2(-_DenoiserParams.z, -_DenoiserParams.w * YScalar),
+        float2(_DenoiserParams.z, -_DenoiserParams.w * YScalar),
+        float2(-_DenoiserParams.z, _DenoiserParams.w * YScalar),
+        float2(_DenoiserParams.z, _DenoiserParams.w * YScalar)
+    };
+
+    float4 cmin = original, cmax = original;
+    for ( int i = 0; i < 8; i++)
+    {
+        float2 offsetedUV = uv + offsets[i];
+        if (offsetedUV.x < 0 || offsetedUV.x >= 1 || offsetedUV.y < 0 || offsetedUV.y >= 1)
+            continue;
+
+        float4 current = SAMPLE_TEXTURE2D_LOD(_InputTexture, s_point_clamp_sampler, offsetedUV, 0);
+        if (_SingleChannel < 1)
+            current.xyz = RGBToYCoCg(current.xyz);
+        cmin = min(cmin, current);
+        cmax = max(cmax, current);
+    }
+
+    // for the sake of simplicity
+    float4 prevClip = clamp(previous, cmin, cmax);
+    if (_SingleChannel < 1)
+    {
+        blendedColor.xyz = WorkingToPerceptual(blendedColor.xyz);
+        prevClip.xyz = WorkingToPerceptual(prevClip.xyz);
+        blendedColor = lerp(blendedColor, prevClip, 0.8);
+        blendedColor.xyz = YCoCgToRGB(PerceptualToWorking(blendedColor.xyz));
+    }
+    else
+        blendedColor = lerp(blendedColor, prevClip, 0.8);
+    blendedColor.xyz = min(blendedColor.xyz, 1024);
+    _OutputBuffer[id.xy] = blendedColor;
+}
+
+[numthreads(8,8,1)]
+void BilateralUpsampling (uint3 id : SV_DispatchThreadID, uint3 groupId : SV_GroupId, uint groupIndex : SV_GroupIndex, uint3 groupThreadId : SV_GroupThreadID)
+{
+    float depth = _HiZDepthTexture[id.xy].x;
+
+    // skip unnecessary pixel
+    if (any(id.xy >= uint2(_ScaledScreenParams.xy)) || depth == 0)
+    {
+        _OutputBuffer[id.xy] = _DefaultValue;
+        return;
+    }
+    float2 texcoord = id.xy + 0.5f;
+    float2 uv = texcoord / (float2)_ScaledScreenParams.xy;
+
+    BilateralData centerData = GetBilateralData(uv);
+    static const float2 texelSize = 1.0f / _ScaledScreenParams.xy;
+    static const float2 offsets[8] = {
+        float2(texelSize.x, 0), float2(0, texelSize.y),
+        float2(texelSize.x, texelSize.y), float2(-texelSize.x, -texelSize.y),
+        float2(-texelSize.x, texelSize.y), float2(texelSize.x, -texelSize.y),
+        float2(-texelSize.x, 0), float2(0, -texelSize.y)
+    };
+    static const float spaceWeights[8] = {
+        0.1233, 0.1233,
+        0.0778, 0.0778,
+        0.0778, 0.0778,
+        0.1233, 0.1233
+    };
+    float weight = 0.1953;
+    float4 irradiance = centerData.irradiance * weight;
+    for (int i = 0; i < 8; i++)
+    {
+        BilateralData neighbour = GetBilateralData(uv + offsets[i]);
+        if (neighbour.invalid)
+            continue;
+
+        float valueWeight = GetBilateralValue(centerData, neighbour);
+        float finalWeight = valueWeight * spaceWeights[i];
+
+        irradiance += neighbour.irradiance * finalWeight;
+        weight += finalWeight;
+    }
+
+    irradiance = irradiance / weight; 
+    irradiance.w = saturate(irradiance.w);
+
+    irradiance.xyz = min(irradiance.xyz, 1024);
+    _OutputBuffer[id.xy] = irradiance;
+}
+
+[numthreads(8, 8, 1)]
+void SSAO (uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy  >= uint2(_SSAOTexParams.xy)))
+        return;
+
+    uint2 realID = id.xy << (uint)_DownSampleTracing;
+    if (_DownSampleTracing > 0.5f)
+    {
+        uint2 offset = uint2(_SubIndex & 0x1, _SubIndex / uint(2));
+        realID += offset; 
+    }    
+    float2 uv = (float2(realID) + 0.5f) / float2(_ScaledScreenParams.xy);
+    float depth = _HiZDepthTexture[realID].x;
+    if (depth <= 0)
+    {  
+        _TracedResult[id.xy] = 1;
+        return;
+    }
+
+    float linearDepth = LinearEyeDepth(depth);
+    half3 posVS = UV2View(uv, linearDepth);
+    half3 viewDirVS = normalize(-posVS);
+    
+    half4 normalBuffer = _CameraNormalsTexture[realID];
+    half3 normalVS = mul(unity_WorldToCamera, half4(GetNormalFromBuffer(normalBuffer.xyz), 0)).xyz;
+
+    float screenRadius = clamp(_RadiusMultiplier * _Radius / posVS.b, 1, _SSAOTexParams.x);
+    half AO = 0;
+
+    // noise
+    half4 blueNoise = SAMPLE_TEXTURE2D_LOD(_BlueNoise, s_point_repeat_sampler, float2((float2)id.xy + _BlueNoiseParams.zw * _SSAOTexParams.xy) * _BlueNoiseParams.zw, 0);
+    static const float YScalar = _SSAOTexParams.x / _SSAOTexParams.y;
+    for (int i = 0; i < _Slices; i++)
+    {
+        float angle = PI * ((float)i / (float)_Slices + blueNoise.x);
+        float3 traceDir = float3(cos(angle), sin(angle), 0);
+
+        half2 H = -1;
+        for (int j = 0; j < _Steps; j++)
+        {
+            float2 uvOffset = traceDir.xy * max((float)screenRadius * ((float)j + (float)blueNoise.a), 1.0f);
+            float4 offsetedUV = uv.xyxy + float4(uvOffset.xy, -uvOffset) * _SSAOTexParams.zwzw * float4(1, YScalar, 1, YScalar);
+
+            // SP 1
+            float depth1 = SAMPLE_TEXTURE2D_LOD(_HiZDepthTexture, s_point_clamp_sampler, offsetedUV.xy, 0).x;
+            float linearDepth1 = LinearEyeDepth(depth1);
+            float depthDiff1 = abs(linearDepth1 - linearDepth);
+            half3 posVS1 = UV2View(offsetedUV.xy, linearDepth1);
+            if (depth1 > 0 && depthDiff1 <= _Radius && depthDiff1 > 0.05)
+            {
+                half3 V1 = posVS1 - posVS;
+                half dist1 = length(V1);
+                half falloff1 = saturate(dist1 / _Radius);
+                half sp_H1 = dot(normalize(V1), viewDirVS);
+                H.x = sp_H1 > H.x ? lerp(sp_H1, H.x, falloff1) : lerp(sp_H1, H.x, 0.99);
+            }
+
+            // SP 2
+            float depth2 = SAMPLE_TEXTURE2D_LOD(_HiZDepthTexture, s_point_clamp_sampler, offsetedUV.zw, 0).x;
+            float linearDepth2 = LinearEyeDepth(depth2);
+            float depthDiff2 = abs(linearDepth2 - linearDepth);
+            half3 posVS2 = UV2View(offsetedUV.zw, LinearEyeDepth(depth2));
+            if (depth2 > 0 && depthDiff2 <= _Radius && depthDiff2 > 0.05)
+            {
+                half3 V2 = posVS2 - posVS;
+                half dist2 = length(V2);
+                half falloff2 = saturate(dist2 / _Radius);
+                half sp_H2 = dot(normalize(V2), viewDirVS);
+                H.y = sp_H2 > H.y ? lerp(sp_H2, H.y, falloff2) : lerp(sp_H2, H.y, 0.99);
+            }
+        }
+
+        half3 planeNormal = normalize(cross(traceDir, viewDirVS));
+        half3 planeTangent = cross(viewDirVS, planeNormal);
+        half3 projectedNormal = normalVS - planeNormal * dot(normalVS, planeNormal);
+        half projectedLength = length(projectedNormal);
+        half cosNorm = dot(projectedNormal, viewDirVS) / projectedLength;
+        half n = -sign(dot(planeTangent, projectedNormal)) * acos(cosNorm);
+
+        H = acos(H);
+        H.x = n + clamp(-H.x - n, -PI * 0.5, PI * 0.5);
+        H.y = n + clamp(H.y - n, -PI * 0.5, PI * 0.5);
+        AO += projectedLength * IntegrateArc_CosWeight(H, n, cosNorm);
+    }
+
+
+    AO = saturate(_SSAO_Intensity * (1 - (AO / (float)_Slices)));
+    _TracedResult[id.xy] = max(1 - AO, 0.01);
+    return;
+}
+
+[numthreads(8, 8, 1)]
+void BilateralBlur (uint3 id : SV_DispatchThreadID, uint3 groupId : SV_GroupId, uint groupIndex : SV_GroupIndex, uint3 groupThreadId : SV_GroupThreadID)
+{ 
+    if (any(id.xy >= uint2(_DenoiserParams.xy)))
+    {
+        _OutputBuffer[id.xy] = 1;
+        return;
+    }
+
+    float2 uv = (id.xy + 0.5f) / _DenoiserParams.xy;
+    // center Data
+    BilateralData centerData = GetBilateralData(uv);
+    if (centerData.invalid)
+    {
+        _OutputBuffer[id.xy] = 1;
+        return;
+    }
+
+    half AO = 0;
+    half weight = 0;
+#if BILATERAL_BLUR_H
+	float offsets[] = { -4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0 };
+	float weights[] = { 0.01621622, 0.05405405, 0.12162162, 0.19459459, 0.22702703, 0.19459459, 0.12162162, 0.05405405, 0.01621622 };
+#else
+	float offsets[] = { -3.23076923, -1.38461538, 0.0, 1.38461538, 3.23076923 };
+	float weights[] = { 0.07027027, 0.31621622, 0.22702703, 0.31621622, 0.07027027 };
+#endif
+    for (uint i = 0; 
+        #if BILATERAL_BLUR_H
+            i < 9; 
+        #else
+            i < 5;
+        #endif
+            i++)
+    {
+    #if BILATERAL_BLUR_H
+        float2 offset = float2(offsets[i] * _DenoiserParams.z, 0);
+    #else
+        float2 offset = float2(0, offsets[i] * _DenoiserParams.w);
+    #endif
+        BilateralData neighbourData =  GetBilateralData(uv + offset);
+        if (neighbourData.invalid)
+            continue;
+        
+        half valueWeight = GetBilateralValue(centerData, neighbourData) * weights[i];
+
+        AO += neighbourData.irradiance.x * valueWeight;
+        weight += valueWeight;
+    }
+
+    AO = weight > 0 ? AO / weight : centerData.irradiance.x; 
+    _OutputBuffer[id.xy] = AO;
+}
+
+[numthreads(8, 8, 1)]
+void Copy(uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy  >= uint2(_CopyParams.xy)))
+        return;
+
+    #if COPY_COLOR
+    _TargetBuffer[id.xy] = _SourceTexture[id.xy];
+    #else
+    _TargetBufferSC[id.xy] = _SourceTextureSC[id.xy].x;
+    #endif
+}
+
+[numthreads(8,8,1)]
+void BloomPrefilter (uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy >= uint2(_BloomParams.xy)))
+        return;
+    
+    float2 uv = float2(id.xy + 0.5f) / _BloomParams.xy;
+
+    float4 color = SAMPLE_TEXTURE2D_LOD(_SourceTexture, sampler_linear_clamp, uv, 0);
+
+    // Thresholding
+    half brightness = Max3(color.r, color.g, color.b);
+    half softness = clamp(brightness - _BloomThreshold + _BloomThresholdKnee, 0.0, 2.0 * _BloomThresholdKnee);
+    softness = (softness * softness) / (4.0 * _BloomThresholdKnee + 1e-4);
+    half multiplier = max(brightness - _BloomThresholdKnee, softness) / max(brightness, 1e-4);
+    color *= multiplier;
+    _OutputBuffer[id.xy] = color;
+
+}
+
+[numthreads(8,8,1)]
+void BloomBlur (uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy >= uint2(_BloomParams.xy)))
+        return;
+    float2 uv = float2(id.xy + 0.5f) / _BloomParams.xy;
+	float3 color = 0.0;
+
+#if BLOOM_BLUR_H
+    float offsets[] = { -4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0 };
+    float weights[] = { 0.01621622, 0.05405405, 0.12162162, 0.19459459, 0.22702703, 0.19459459, 0.12162162, 0.05405405, 0.01621622 };
+    for (int i = 0; i < 9; i++) {
+		float offset = offsets[i] * _BloomParams.z;
+		color += SAMPLE_TEXTURE2D_LOD(_SourceTexture, sampler_linear_clamp, uv + float2(offset, 0.0), _MipLevel).rgb * weights[i];
+    }
+#else
+    float offsets[] = { -3.23076923, -1.38461538, 0.0, 1.38461538, 3.23076923 };
+    float weights[] = { 0.07027027, 0.31621622, 0.22702703, 0.31621622, 0.07027027 };
+    for (int i = 0; i < 5; i++) {
+        float offset = offsets[i] * _BloomParams.w;
+        color += SAMPLE_TEXTURE2D_LOD(_SourceTexture, sampler_linear_clamp, uv + float2(0,offset), _MipLevel + 1).rgb * weights[i];
+    }
+#endif
+
+    _OutputBuffer[id.xy] = float4(color, 1);
+}
+
+
+[numthreads(8,8,1)]
+void BloomUpsampling (uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy >= uint2(_BloomParams.xy)))
+        return;
+    
+    float2 uv = float2(id.xy + 0.5f) / _BloomParams.xy;
+
+	float3 low_res = SAMPLE_TEXTURE2D_LOD(_SourceTexture, sampler_linear_clamp, uv, _MipLevel).rgb;
+    float3 high_res;
+    if (_SwapBuffer > 0.5)
+        high_res =_OutputBuffer[id.xy].xyz;
+    else
+        high_res = SAMPLE_TEXTURE2D_LOD(_SourceTexture, sampler_linear_clamp, uv, _MipLevel - 1).rgb; 
+
+    _OutputBuffer[id.xy] = float4(lerp(high_res, low_res, _BloomScatter), 1);
+}
+
+
+[numthreads(8,8,1)]
+void PostProcessing (uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xy >= uint2(_PostProcessingParams.xy)))
+        return;
+    
+    float2 uv = float2(id.xy + 0.5f) / _PostProcessingParams.xy;
+
+    #if TAA
+        _OutputBuffer[id.xy] = DoTemporalAA(uv);
+        return;
+    #else
+
+        float4 color = SAMPLE_TEXTURE2D_LOD(_SourceTexture, sampler_linear_clamp, uv, 0);
+        #if BLOOM
+            float3 bloom = SAMPLE_TEXTURE2D_LOD(_InputTexture, sampler_linear_clamp, uv, 0).xyz;
+            color.xyz += bloom * _BloomIntensity;
+        #endif
+        #if COLOR_ADJUSTMENTS
+            color.xyz *= _PostExposure;
+        #endif
+        #if TONEMAPPING
+            float3 colorLutSpace = saturate(LinearToLogC(color.xyz));
+            float3 colorLut = ApplyLut3D(TEXTURE3D_ARGS(_LutTex, sampler_linear_clamp), colorLutSpace.xyz, float2(_LutParams.z, _LutParams.y));
+            color.xyz = colorLut;
+        #endif
+        #if COLOR_ADJUSTMENTS
+            color.xyz = ApplyLut3D(TEXTURE3D_ARGS(_InternalLutTex, sampler_linear_clamp), saturate(color.xyz), float2(_LutParams.z, _LutParams.y));
+        #endif
+        _OutputBuffer[id.xy] = color;
+
+    #endif
+}
+
+[numthreads(8, 8, 8)]
+void LutPrepare (uint3 id : SV_DispatchThreadID)
+{
+    if (any(id.xyz >= uint3(_LutParams.xxx)))
+        return;
+
+    float3 colorLinear = float3(id.xyz) / _LutParams.xxx;
+
+    // White balance in LMS space
+    float3 colorLMS = LinearToLMS(colorLinear);
+    colorLMS *= _ColorBalance.xyz;
+    colorLinear = LMSToLinear(colorLMS);
+
+    // Do contrast in log after white balance
+    float3 colorLog = LinearToLogC(colorLinear);
+    colorLog = (colorLog - ACEScc_MIDGRAY) * _HueSatCon.z + ACEScc_MIDGRAY;
+    colorLinear = LogCToLinear(colorLog);
+
+    // Color filter is just an unclipped multiplier
+    colorLinear *= _ColorFilter.xyz;
+
+    // Do NOT feed negative values to the following color ops
+    colorLinear = max(0.0, colorLinear);
+
+    // HSV operations
+    float3 hsv = RgbToHsv(colorLinear);
+    {
+        // Hue Shift & Hue Vs Hue
+        float hue = hsv.x + _HueSatCon.x;
+        hsv.x = RotateHue(hue, 0.0, 1.0);
+    }
+    colorLinear = HsvToRgb(hsv);
+
+    // Global saturation
+    float3 luma = GetLuminance(colorLinear);
+    colorLinear = luma.xxx + _HueSatCon.yyy * (colorLinear - luma.xxx);
+
+
+    _LutBuffer[id.xyz] = float4(colorLinear, 1);
+}

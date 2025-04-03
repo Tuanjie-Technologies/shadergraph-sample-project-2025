@@ -1,0 +1,365 @@
+fileFormatVersion: 2
+guid: 4f92e8161544c084dbd84e7d30d86c7c
+ModelImporter:
+  serializedVersion: 22348
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Int_sutures
+    second: {fileID: 2100000, guid: f396bc954e579724f8a9c3a71ff63bce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leftSideScreen
+    second: {fileID: 2100000, guid: 9b2234e21048ff94d8573b9f0202ce92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rightSideScreen
+    second: {fileID: 2100000, guid: 9b2234e21048ff94d8573b9f0202ce92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Car_Paint
+    second: {fileID: 2100000, guid: 6d99debe121f1b64388a5eb194517808, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_ChromeReflectorHeadlights
+    second: {fileID: 2100000, guid: 3e147513d0c03c549a33a474dd359b34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Chrome_Gray_Rough
+    second: {fileID: 2100000, guid: f4991fc69af2abd49a63dc1817525b3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Chrome_Mirror_Dark
+    second: {fileID: 2100000, guid: 11f9df69652c7f84289e65997aae7104, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_GlassLensBump
+    second: {fileID: 2100000, guid: db87b78c4ced6244bbdb64162ded313d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Glass_plastic
+    second: {fileID: 2100000, guid: c3d198360e2b4fc4a9a7229bc448b1db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Glow_Red
+    second: {fileID: 2100000, guid: 2d580b540c9f654418b2356774e6cfa0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Int_AmbilightEmissive
+    second: {fileID: 2100000, guid: 257601e586fb5334085b95ca0599557f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Int_Belt
+    second: {fileID: 2100000, guid: 8102c4299bf224341a6668777198efe5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Int_LeatherRice2
+    second: {fileID: 2100000, guid: ca431360a0ba325459592e2fa9729c6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_PlasticDkGlossHdlightsBump
+    second: {fileID: 2100000, guid: 2a82d2d202d296d42ac9250b2e490d0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_PlasticDkHdlightsGlossy
+    second: {fileID: 2100000, guid: 92aacea59e617e84aba967b181e3c903, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_PlasticDkHdlightsMatte
+    second: {fileID: 2100000, guid: e9ee056bd5d272245b73766489d31058, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_PlasticParktronicGrey
+    second: {fileID: 2100000, guid: 8a36376486fa7ca48aef5aa65cf8c6f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Plastic_Black
+    second: {fileID: 2100000, guid: a8a4d155fb85171489bdc683a451bb6a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Plastic_Honeycomb_Grid
+    second: {fileID: 2100000, guid: 9262d86377fd39e4f83434bc9ba9f0f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Red2
+    second: {fileID: 2100000, guid: 8d898c8f2865f8f4dbb7d140f44896b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Screen
+    second: {fileID: 2100000, guid: a61ce89e21773844ead8111a598b9716, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_Screen_Black
+    second: {fileID: 2100000, guid: b9ad4f5a98c434042a1b2ba129814f84, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_WheelBrakeDisk
+    second: {fileID: 2100000, guid: 6fe5d67cf6ed71d41bfb75f5c53c6fb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_WheelCaliper
+    second: {fileID: 2100000, guid: 60d19a7833a3f6a499802bd24ffc3e5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_WheelLogoTex
+    second: {fileID: 2100000, guid: 03afe396879accd4185f89552eb6f6cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_WheelPaintBlack
+    second: {fileID: 2100000, guid: 13b5e964ecbf8d94a84ac9c3d6e990b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_WheelPlasticBlack
+    second: {fileID: 2100000, guid: 362191f4c6e776e4a938f0984ee65828, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_WheelRimAlum
+    second: {fileID: 2100000, guid: 49e6a7d0d7451dc44a8e9e0a01446c61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_WheelTireBump
+    second: {fileID: 2100000, guid: 8d5ee9c99f5309440ae3c578e6f2c98c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_black_Rough_plastic
+    second: {fileID: 2100000, guid: 9159272c7b2daab40a2a07fd261add92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_chair_black_matt
+    second: {fileID: 2100000, guid: d937b0920dd4f9c4494fe6c297c5fd83, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_d_glass
+    second: {fileID: 2100000, guid: d3010fb9100bc0a4898017173373ddb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_ext_headlight
+    second: {fileID: 2100000, guid: b7a3c2433ad7c5c45b10b5a60d1c5127, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_ext_rearlight
+    second: {fileID: 2100000, guid: a411125da73413043bc867d961038d29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_external_black_matt
+    second: {fileID: 2100000, guid: e9a7362ebd50b9e479202ec29a48325c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_front_light
+    second: {fileID: 2100000, guid: af23bbdbabc40dd45af0ddb0d38fbb00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_int_Black
+    second: {fileID: 2100000, guid: debd3bd30d409e44db540d148fa3d7f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_int_GlassClearGloss
+    second: {fileID: 2100000, guid: a9f0b7642524af443a2b64adac534b3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_int_LeatherStWheelPerforated
+    second: {fileID: 2100000, guid: 1db101f5e8a8c164f835c9f539eceeed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_int_PlasticDkMatte
+    second: {fileID: 2100000, guid: 6e758cf7849600c48bc05897bfb53559, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_int_SteeringWheelButtons
+    second: {fileID: 2100000, guid: 03ac11420706b79419c1dee8594630fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_int_black_matt
+    second: {fileID: 2100000, guid: 2530de1c97ac3ae46979d85a1b7e7dad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_light_matt
+    second: {fileID: 2100000, guid: 376fa2afebe0fd14f94657df49aa2c8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_logo_black
+    second: {fileID: 2100000, guid: 447c6f6ac2e0bee4283d4fb14a783384, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_logo_white
+    second: {fileID: 2100000, guid: f93aba9673cb8944990ce945205523b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_mirror
+    second: {fileID: 2100000, guid: c725cf86c58924544b8248f3d377c8b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_rchrome_d
+    second: {fileID: 2100000, guid: 6cef2173016fcc2448d361cee0557ccb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_silver
+    second: {fileID: 2100000, guid: 25c29f9ef19b4104db51810facbb3d69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuanjie_final_vd_glass
+    second: {fileID: 2100000, guid: cea4d8d33dc7cf94f9dffdbcec37e02c, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    aCLCompressionLevel: 0
+    aCLCurvePrecision: 0.01
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+    virtualGeometry: 0
+    hasBoneWeight: 0
+    generateGeometryBuffer: 0
+    positionPrecision: -2147483648
+    normalPrecision: -1
+    tangentPrecision: -1
+    surfaceCompensation: 0
+    allMeshUse: 1
+    ignoreSimpleMesh: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

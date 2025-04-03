@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!114 &-8882458833165323198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30c2ed67093adc4eac3abb2b4409468, type: 3}
+  m_Name: ScreenSpaceRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  opaqueLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  screenSpaceCS: {fileID: 7200000, guid: 1b0ad7ccea0ac9446853a5a41b94aad8, type: 3}
+  m_TonemappingLUT: {fileID: 11700000, guid: a6c45cbe04c066248bbf684df47b3ede, type: 2}
+  cameraMotionVectorShader: {fileID: 4800000, guid: f621d3a3cb3517244a4970b2f4abce7a,
+    type: 3}
+  objectMotionVectorShader: {fileID: 4800000, guid: 7721c0baf5f0f1242b1050de07a645bb,
+    type: 3}
+  m_BlueNoiseTextures:
+  - {fileID: 2800000, guid: fd51b6afea16cae4daa47b8a10ce5582, type: 3}
+  - {fileID: 2800000, guid: 28667ad488afb9643b47810c417bdec5, type: 3}
+  - {fileID: 2800000, guid: 6f06cb8cb54a9c94b915533fb27ec565, type: 3}
+  - {fileID: 2800000, guid: 8c15ca382952e4443bd5d1006f729b65, type: 3}
+  - {fileID: 2800000, guid: fd4d2c188d221cf41ac1f677f3077c4f, type: 3}
+  - {fileID: 2800000, guid: f253733a652a3c14f971fdead888cfb0, type: 3}
+  - {fileID: 2800000, guid: b61e64368f3fca54eb22a05d82f4edb3, type: 3}
+  - {fileID: 2800000, guid: 09a87107cba580849b52b0b427180a8d, type: 3}
+  - {fileID: 2800000, guid: c0d293026be90fa439da879da3c4b7d5, type: 3}
+  - {fileID: 2800000, guid: b07a7757e74213e4996780fc982135cc, type: 3}
+  - {fileID: 2800000, guid: 63e3ba07f96ad1b49aec1baa06441b05, type: 3}
+  - {fileID: 2800000, guid: 099e7d0bfa9402a45a62fb278e9c5ed5, type: 3}
+  - {fileID: 2800000, guid: 429add7d1c1f0cf4282e629fe2692bb5, type: 3}
+  - {fileID: 2800000, guid: 05955ab80e5ef5c49a73bf5668afafa0, type: 3}
+  - {fileID: 2800000, guid: 829f3319fc3b2e34db60ba2c3ed2af68, type: 3}
+  - {fileID: 2800000, guid: 1e3862167cf45134f89a3808ac07d6c7, type: 3}
+  - {fileID: 2800000, guid: dbb36401872669740893181aa4dfc23f, type: 3}
+  - {fileID: 2800000, guid: 105928c6e940f6b478c2d333216486d9, type: 3}
+  - {fileID: 2800000, guid: 8477c8e81915aed4c8dab337d8a7bdbb, type: 3}
+  - {fileID: 2800000, guid: 155a85c43ad3efd439d0bb1d77da56a5, type: 3}
+  - {fileID: 2800000, guid: 274c2116a2e8c6841bc17a9392bdf952, type: 3}
+  - {fileID: 2800000, guid: a473e75ffe4028c449d167e4b2fbdcc5, type: 3}
+  - {fileID: 2800000, guid: a64a099e59b70ae4098772fec21ed3ab, type: 3}
+  - {fileID: 2800000, guid: 93ed63d32f151b04487b5348a70db243, type: 3}
+  - {fileID: 2800000, guid: 52740d590fa82af468c97490a9cabe30, type: 3}
+  - {fileID: 2800000, guid: 9cece0597e6920c439adbd1ab4cec109, type: 3}
+  - {fileID: 2800000, guid: 3496899d7ca1eb748bf53b3814d4416f, type: 3}
+  - {fileID: 2800000, guid: 48b363d03742c1542b6c1d5d381289b6, type: 3}
+  - {fileID: 2800000, guid: 533e656c87eea6d4f9c9bc3364952b79, type: 3}
+  - {fileID: 2800000, guid: 73bbec7dc50987640940ddd4d981af8c, type: 3}
+  - {fileID: 2800000, guid: e1c80c4e4dbc5a74f88bbf0b9e065ca6, type: 3}
+  - {fileID: 2800000, guid: d20646afe9c10c44288922e47e7692b8, type: 3}
+  - {fileID: 2800000, guid: 31c642b65cbbdb94c923de256b5cd7f6, type: 3}
+  - {fileID: 2800000, guid: cb2f596beb0d45841af350b08925d5ac, type: 3}
+  - {fileID: 2800000, guid: ae174829d6304754aa35ff18fc2d5b4e, type: 3}
+  - {fileID: 2800000, guid: 5a3346c80c587bf48b1a0e2fcd6b1771, type: 3}
+  - {fileID: 2800000, guid: 9dd02e58633847e4da2822d32a74364f, type: 3}
+  - {fileID: 2800000, guid: 8815fb06b08d58744a94934a0d2d631f, type: 3}
+  - {fileID: 2800000, guid: 6855f77c53fc274458a51fac3a744b96, type: 3}
+  - {fileID: 2800000, guid: 268b5b78ed5ca8a41b09075b9aa59d47, type: 3}
+  - {fileID: 2800000, guid: b12276ee97fd50e41862e745047dc4c2, type: 3}
+  - {fileID: 2800000, guid: ce70d22055bd57642b648a29a25ea012, type: 3}
+  - {fileID: 2800000, guid: 08b7422903b7a4c4d94cff7fb1024293, type: 3}
+  - {fileID: 2800000, guid: 64cd0db29878a8e4eba0afdf485c3d3f, type: 3}
+  - {fileID: 2800000, guid: e4161fbea249e96438cf667c9e1a375e, type: 3}
+  - {fileID: 2800000, guid: 300634df1fc70ab4f841e5e6caba03bd, type: 3}
+  - {fileID: 2800000, guid: c0a1ade50e7c9d640a6495329ba7bf3d, type: 3}
+  - {fileID: 2800000, guid: 46b652061f1106b46a631b3fd36e1088, type: 3}
+  - {fileID: 2800000, guid: fbefd6dbf44282244bae7425623db461, type: 3}
+  - {fileID: 2800000, guid: 070cd1ddd95902740800d46c8bbfc906, type: 3}
+  - {fileID: 2800000, guid: ea2e8b89dc323b645a4085c81aaad8ab, type: 3}
+  - {fileID: 2800000, guid: 1213c52716980924b8122a1e6576b598, type: 3}
+  - {fileID: 2800000, guid: fae5ccc828191ee42ab66013626944a7, type: 3}
+  - {fileID: 2800000, guid: 2220474ac34faaf43b1b02bea126751d, type: 3}
+  - {fileID: 2800000, guid: 2fbd42c8b52cf5044bae4ad687d347bd, type: 3}
+  - {fileID: 2800000, guid: 884b8c2bc81e87a468f6fa2cd2013899, type: 3}
+  - {fileID: 2800000, guid: 922a15f88a27ff4459cbbba9b1063c27, type: 3}
+  - {fileID: 2800000, guid: 4b52d364aa1018b408903f44de269172, type: 3}
+  - {fileID: 2800000, guid: 6866224bb29becb4ca1ccf7b9611fcc9, type: 3}
+  - {fileID: 2800000, guid: 4a8709368e2e3a841806782c9691c92e, type: 3}
+  - {fileID: 2800000, guid: cd652e50c95305442b0fc2a30b270e4b, type: 3}
+  - {fileID: 2800000, guid: 19ee3f34d7a34694d92492e0230735a3, type: 3}
+  - {fileID: 2800000, guid: b68d678176f334e40879784f219b448e, type: 3}
+  - {fileID: 2800000, guid: 82e2b09145634f048be0d1fcc1379d92, type: 3}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
+  m_Name: URP-Balanced-Renderer
+  m_EditorClassIdentifier: 
+  debugShaders:
+    debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7,
+      type: 3}
+    hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
+  m_RendererFeatures:
+  - {fileID: -8882458833165323198}
+  m_RendererFeatureMap: 427426a5c02abb84
+  m_UseNativeRenderPass: 0
+  postProcessData: {fileID: 0}
+  xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
+  shaders:
+    blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
+    copyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
+    screenSpaceShadowPS: {fileID: 0}
+    samplingPS: {fileID: 4800000, guid: 04c410c9937594faa893a11dceb85f7e, type: 3}
+    stencilDeferredPS: {fileID: 4800000, guid: e9155b26e1bc55942a41e518703fe304, type: 3}
+    fallbackErrorPS: {fileID: 4800000, guid: e6e9a19c3678ded42a3bc431ebef7dbd, type: 3}
+    fallbackLoadingPS: {fileID: 4800000, guid: 7f888aff2ac86494babad1c2c5daeee2, type: 3}
+    materialErrorPS: {fileID: 4800000, guid: 5fd9a8feb75a4b5894c241777f519d4e, type: 3}
+    coreBlitPS: {fileID: 4800000, guid: 93446b5c5339d4f00b85c159e1159b7c, type: 3}
+    coreBlitColorAndDepthPS: {fileID: 4800000, guid: d104b2fc1ca6445babb8e90b0758136b,
+      type: 3}
+    blitHDROverlay: {fileID: 4800000, guid: a89bee29cffa951418fc1e2da94d1959, type: 3}
+    shadingRate: {fileID: 4800000, guid: f34b9751d8317eb4b8bc8c90fe059a92, type: 3}
+    cameraMotionVector: {fileID: 4800000, guid: c56b7e0d4c7cb484e959caeeedae9bbf,
+      type: 3}
+    objectMotionVector: {fileID: 4800000, guid: 7b3ede40266cd49a395def176e1bc486,
+      type: 3}
+    dataDrivenLensFlare: {fileID: 4800000, guid: 6cda457ac28612740adb23da5d39ea92,
+      type: 3}
+  m_AssetVersion: 2
+  m_OpaqueLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_TransparentLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_DefaultStencilState:
+    overrideStencilState: 0
+    stencilReference: 0
+    stencilCompareFunction: 8
+    passOperation: 2
+    failOperation: 0
+    zFailOperation: 0
+  m_ShadowTransparentReceive: 1
+  m_RenderingMode: 0
+  m_DepthPrimingMode: 0
+  m_CopyDepthMode: 0
+  m_AccurateGbufferNormals: 0
+  m_IntermediateTextureMode: 1

@@ -1,0 +1,275 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!114 &-2313245500170806394
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a44017da0da1440a45670f1ff48e17, type: 3}
+  m_Name: ScreenSpaceComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  UseComputeShader:
+    m_OverrideState: 1
+    m_Value: 0
+  SSR_ON:
+    m_OverrideState: 1
+    m_Value: 1
+  DownSample:
+    m_OverrideState: 1
+    m_Value: 1
+  maxSteps:
+    m_OverrideState: 1
+    m_Value: 40
+  thickness:
+    m_OverrideState: 1
+    m_Value: 0.00015
+  brdfBias:
+    m_OverrideState: 1
+    m_Value: 0.7
+  edgeFade:
+    m_OverrideState: 1
+    m_Value: 0.2
+  SSAO_ON:
+    m_OverrideState: 1
+    m_Value: 1
+  SSAO_DownSample:
+    m_OverrideState: 1
+    m_Value: 1
+  Slices:
+    m_OverrideState: 1
+    m_Value: 2
+  Steps:
+    m_OverrideState: 1
+    m_Value: 3
+  TracingRadiusScalar:
+    m_OverrideState: 1
+    m_Value: 10
+  Radius:
+    m_OverrideState: 1
+    m_Value: 2.5
+  DirectionalStrength:
+    m_OverrideState: 1
+    m_Value: 0
+  Intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  TAA_ON:
+    m_OverrideState: 1
+    m_Value: 1
+  JitterSize:
+    m_OverrideState: 1
+    m_Value: 1
+  FrameInfluencer:
+    m_OverrideState: 1
+    m_Value: 0.05
+  BLOOM_ON:
+    m_OverrideState: 1
+    m_Value: 1
+  Threshold:
+    m_OverrideState: 1
+    m_Value: 1
+  BloomIntensity:
+    m_OverrideState: 1
+    m_Value: 0.35
+  Scatter:
+    m_OverrideState: 1
+    m_Value: 0.7
+  MaxIterations:
+    m_OverrideState: 1
+    m_Value: 6
+  Tonemapping_ON:
+    m_OverrideState: 1
+    m_Value: 1
+  LUT:
+    m_OverrideState: 1
+    m_Value: {fileID: 11700000, guid: a6c45cbe04c066248bbf684df47b3ede, type: 2}
+  PostExposure:
+    m_OverrideState: 1
+    m_Value: 0
+  WhiteBalance:
+    m_OverrideState: 1
+    m_Value: 0
+  Contrast:
+    m_OverrideState: 1
+    m_Value: 0
+  ColorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  HueShift:
+    m_OverrideState: 1
+    m_Value: 0
+  Saturation:
+    m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: SampleScene_Indoor
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -2313245500170806394}
+  - {fileID: 3252770479040874168}
+--- !u!114 &3252770479040874168
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
+  m_Name: DepthOfField
+  m_EditorClassIdentifier: 
+  active: 1
+  mode:
+    m_OverrideState: 0
+    m_Value: 0
+  gaussianStart:
+    m_OverrideState: 0
+    m_Value: 10
+  gaussianEnd:
+    m_OverrideState: 0
+    m_Value: 30
+  gaussianMaxRadius:
+    m_OverrideState: 0
+    m_Value: 1
+  highQualitySampling:
+    m_OverrideState: 0
+    m_Value: 0
+  focusDistance:
+    m_OverrideState: 0
+    m_Value: 10
+  aperture:
+    m_OverrideState: 0
+    m_Value: 5.6
+  focalLength:
+    m_OverrideState: 0
+    m_Value: 50
+  bladeCount:
+    m_OverrideState: 0
+    m_Value: 5
+  bladeCurvature:
+    m_OverrideState: 0
+    m_Value: 1
+  bladeRotation:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &6931826912064727632
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a44017da0da1440a45670f1ff48e17, type: 3}
+  m_Name: ScreenSpaceComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  UseComputeShader:
+    m_OverrideState: 0
+    m_Value: 1
+  SSR_ON:
+    m_OverrideState: 1
+    m_Value: 1
+  DownSample:
+    m_OverrideState: 0
+    m_Value: 1
+  maxSteps:
+    m_OverrideState: 1
+    m_Value: 40
+  thickness:
+    m_OverrideState: 1
+    m_Value: 0.00001
+  brdfBias:
+    m_OverrideState: 1
+    m_Value: 0.7
+  edgeFade:
+    m_OverrideState: 1
+    m_Value: 0.2
+  SSAO_ON:
+    m_OverrideState: 1
+    m_Value: 1
+  SSAO_DownSample:
+    m_OverrideState: 1
+    m_Value: 1
+  Slices:
+    m_OverrideState: 1
+    m_Value: 1
+  Steps:
+    m_OverrideState: 1
+    m_Value: 3
+  TracingRadiusScalar:
+    m_OverrideState: 1
+    m_Value: 15
+  Radius:
+    m_OverrideState: 1
+    m_Value: 3
+  DirectionalStrength:
+    m_OverrideState: 1
+    m_Value: 0.25
+  Intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  TAA_ON:
+    m_OverrideState: 1
+    m_Value: 1
+  JitterSize:
+    m_OverrideState: 1
+    m_Value: 1
+  FrameInfluencer:
+    m_OverrideState: 1
+    m_Value: 0.05
+  BLOOM_ON:
+    m_OverrideState: 1
+    m_Value: 1
+  Threshold:
+    m_OverrideState: 1
+    m_Value: 1.5
+  BloomIntensity:
+    m_OverrideState: 1
+    m_Value: 0.25
+  Scatter:
+    m_OverrideState: 1
+    m_Value: 0.5
+  MaxIterations:
+    m_OverrideState: 1
+    m_Value: 5
+  Tonemapping_ON:
+    m_OverrideState: 1
+    m_Value: 1
+  LUT:
+    m_OverrideState: 1
+    m_Value: {fileID: 11700000, guid: a6c45cbe04c066248bbf684df47b3ede, type: 2}
+  PostExposure:
+    m_OverrideState: 1
+    m_Value: 0
+  WhiteBalance:
+    m_OverrideState: 1
+    m_Value: 0
+  Contrast:
+    m_OverrideState: 1
+    m_Value: 10
+  ColorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  HueShift:
+    m_OverrideState: 1
+    m_Value: 0
+  Saturation:
+    m_OverrideState: 1
+    m_Value: 10

@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!1001 &5074461174285222915
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4370788603724625142, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -161739277027814328, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -161739277027814328, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 144257785530211057, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 144257785530211057, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_Name
+      value: TripodBag_01_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3003495387539171700, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3003495387539171700, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462817882070047791, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620062652374155720, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620062652374155720, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475334217132176791, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      propertyPath: m_Name
+      value: Tripod_Bag_01_col
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -4582123973653301341, guid: a6edfcd04d8df6e43a092fe083961a68, type: 3}
+    - {fileID: 4566975071927395327, guid: a6edfcd04d8df6e43a092fe083961a68, type: 3}
+    - {fileID: -5390395605002996178, guid: a6edfcd04d8df6e43a092fe083961a68, type: 3}
+    - {fileID: -6935207324718763076, guid: a6edfcd04d8df6e43a092fe083961a68, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -4370788603724625142, guid: a6edfcd04d8df6e43a092fe083961a68,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3464647072608739006}
+  m_SourcePrefab: {fileID: 100100000, guid: a6edfcd04d8df6e43a092fe083961a68, type: 3}
+--- !u!1 &377120812347641609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4370788603724625142, guid: a6edfcd04d8df6e43a092fe083961a68,
+    type: 3}
+  m_PrefabInstance: {fileID: 5074461174285222915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3464647072608739006
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377120812347641609}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4209286865113591775, guid: a6edfcd04d8df6e43a092fe083961a68, type: 3}
