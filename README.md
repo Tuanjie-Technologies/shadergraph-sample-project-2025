@@ -1,90 +1,35 @@
 # SG Sample Project 2025
 
-本项目为展示团结引擎 Shader Graph 的更新，包含新的光照模型，Pass 与 Keywords 的剔除，新的节点功能，以及 UI 与 Graph 可读性的改进。
+[![TuanjieVersion](https://img.shields.io/badge/Tuanjie%20Version:-1.5.0-blue)](https://unity.cn/tuanjie/releases)
 
-## Getting started
+本项目为团结引擎官方推出的车模 Sample，基于 Shader Graph 最新版本 14.1.0 开发，实际应用了其更新功能，包括光照模型优化、Pass 与 Keywords 剔除、新增节点功能，以及 UI 与 Graph 可读性的改进，全面展示 Shader Graph 在高质量渲染与动态交互中的实际潜力。
 
-项目使用的编辑器为 Tuanjie 1.5.0
 
-<!-- ## Add your files
+## 项目预览
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+![image](https://github.com/user-attachments/assets/4079c70e-fdfa-41d5-bb84-3e60205781eb)
 
-```
-cd existing_repo
-git remote add origin https://gitlab-fw.internal.unity.cn/ta/sg-sample-project-2024.git
-git branch -M main
-git push -uf origin main
-```
+## 项目亮点
 
-## Integrate with your tools
+- 实现多种真实车漆效果，结合环境光与反射探针模拟自然光照表现
+- 支持用户交互查看模型，包括旋转、放大缩小等功能，适合场景展示与演示需求
+- 使用 Shader Graph 14.1.0 最新节点和优化特性构建，支持更高性能的渲染与更清晰的编辑体验
 
-- [ ] [Set up project integrations](https://gitlab-fw.internal.unity.cn/ta/sg-sample-project-2024/-/settings/integrations)
+## Getting Started
 
-## Collaborate with your team
+1. 下载或克隆本项目：
+   ```bash
+   git clone https://github.com/Tuanjie-Technologies/sg-sample-project-2025.git
+   ```
+2. 使用 [团结引擎](https://unity.cn/tuanjie/releases) 打开该项目，引擎版本需为 1.5.0 或以上
+3. 打开场景 `Scenes/MainScene` 并点击运行
+4. 如果 Shader Graph 依赖缺失，请在 Package Manager 中安装 14.1.0 版本
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+## 文档
 
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+- [Shader Graph 官方文档](https://docs.unity.cn/cn/Packages-cn/com.unity.shadergraph@latest/index.html)
+- [团结引擎用户手册](https://docs.unity.cn/cn/tuanjiemanual/Manual/)
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers. -->
+请查看 [LICENSE.md](./LICENSE.md) 获取项目信息及第三方组件的授权说明。车模资产版权归优三缔科技（上海）有限公司所有，仅限学习与演示用途，禁止商用。
