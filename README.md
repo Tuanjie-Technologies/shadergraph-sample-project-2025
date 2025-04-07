@@ -7,12 +7,13 @@
 
 ## 项目预览
 
-![image](https://github.com/user-attachments/assets/4079c70e-fdfa-41d5-bb84-3e60205781eb)
+![image](https://github.com/user-attachments/assets/160bbe10-2b3e-4039-b4a0-d73bd40d2d93)
+
 
 ## 项目亮点
 
 - 实现多种真实车漆效果，结合环境光与反射探针模拟自然光照表现
-- 支持用户交互查看模型，包括旋转、放大缩小等功能，适合场景展示与演示需求
+- 支持用户交互查看模型，包括切换车漆颜色、车内外细节、简单交互等，适合场景展示与演示需求
 - 使用 Shader Graph 14.1.0 最新节点和优化特性构建，支持更高性能的渲染与更清晰的编辑体验
 
 ## Getting Started
@@ -23,7 +24,7 @@
    ```
 2. 使用 [团结引擎](https://unity.cn/tuanjie/releases) 打开该项目，引擎版本需为 1.5.0 或以上
 3. 打开场景 `Scenes/SampleScene_Indoor` 即可查看Sample
-4. 如果 Shader Graph 依赖缺失，请在 Package Manager 中安装 14.1.0 版本
+5. 如果 Shader Graph 依赖缺失，请在 Package Manager 中安装 14.1.0 版本
 
 ## 文档
 
