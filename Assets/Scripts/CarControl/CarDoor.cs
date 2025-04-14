@@ -75,6 +75,7 @@ public class Doors
 
 }
 
+[RequireComponent(typeof(AudioSource))]
 public class CarDoor : MonoBehaviour
 {
     [Range(0.25f, 120f)]
@@ -83,13 +84,17 @@ public class CarDoor : MonoBehaviour
     float aoLerp = 0f;
     DoorState doorState = DoorState.Closed;
     DoorState previousDoorState = DoorState.Closed;
+    public AudioClip doorOpenSound;
+    public AudioClip doorCloseSound;
+    AudioSource audioSource;
 
     void Start()
     {
-        for (int i=0;i<DoorList.Count;i++)
+        for (int i = 0; i < DoorList.Count; i++)
         {
             DoorList[i].InitOriginalValues();
         }
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void ToggleDoorControl(int doorIndex)
@@ -101,6 +106,11 @@ public class CarDoor : MonoBehaviour
                 case DoorState.Closed:
                     DoorList[doorIndex].DoorState = DoorState.Opening;
                     doorState = DoorState.Opening;
+                    if (doorOpenSound != null)
+                    {
+                        audioSource.clip = doorOpenSound;
+                        audioSource.Play();
+                    }
                     break;
                 case DoorState.Opened:
                     DoorList[doorIndex].DoorState = DoorState.Closing;
@@ -121,7 +131,7 @@ public class CarDoor : MonoBehaviour
 
     void Update()
     {
-        foreach(Doors curDoor in DoorList)
+        foreach (Doors curDoor in DoorList)
         {
             var rotationAxis = curDoor.DoorObject.transform.up;
             switch (curDoor.RotationAxis)
@@ -192,6 +202,11 @@ public class CarDoor : MonoBehaviour
                         else
                         {
                             curDoor.DoorState = DoorState.Closed;
+                            if (doorCloseSound != null)
+                            {
+                                audioSource.clip = doorCloseSound;
+                                audioSource.Play();
+                            }
                             curDoor.SetCurrentStateSaved();
                             curDoor.currentDegree = 0f;
                         }

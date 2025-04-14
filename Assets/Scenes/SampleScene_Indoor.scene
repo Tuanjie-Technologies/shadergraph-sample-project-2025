@@ -1710,7 +1710,7 @@ PrefabInstance:
     - target: {fileID: 7995760554944099950, guid: 91b1be1888dc8724ea844c2afecd16df,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0033108655
+      value: 0.0033107884
       objectReference: {fileID: 0}
     - target: {fileID: 7995760554944099950, guid: 91b1be1888dc8724ea844c2afecd16df,
         type: 3}
@@ -1720,7 +1720,7 @@ PrefabInstance:
     - target: {fileID: 7995760554944099950, guid: 91b1be1888dc8724ea844c2afecd16df,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0053625577
+      value: 0.0053624036
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2061,6 +2061,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2429948916906227883, guid: bac1c9b590019b949b9a8fab1f8e8cb0,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429948916906227883, guid: bac1c9b590019b949b9a8fab1f8e8cb0,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2991262310011600996, guid: bac1c9b590019b949b9a8fab1f8e8cb0,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -2071,6 +2081,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: ac7ff386c0f431a4687a93b11810da7a, type: 2}
+    - target: {fileID: 4463066320885836255, guid: bac1c9b590019b949b9a8fab1f8e8cb0,
+        type: 3}
+      propertyPath: doorOpenSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2658bdf2f68e2024e929fbffa797f4b3, type: 3}
+    - target: {fileID: 4463066320885836255, guid: bac1c9b590019b949b9a8fab1f8e8cb0,
+        type: 3}
+      propertyPath: doorCloseSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 95d64bfd6313d0d4ca2e123c717b7f95, type: 3}
     - target: {fileID: 4593815157423556103, guid: bac1c9b590019b949b9a8fab1f8e8cb0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
