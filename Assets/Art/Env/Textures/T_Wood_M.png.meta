@@ -89,7 +89,7 @@ TextureImporter:
     maxTextureSize: 1024
     maxPlaceholderSize: 32
     resizeAlgorithm: 0
-    textureFormat: 10
+    textureFormat: 25
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 1
