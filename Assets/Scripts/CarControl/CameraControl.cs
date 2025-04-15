@@ -23,7 +23,7 @@ public class CameraControl : MonoBehaviour
         interiorCamera.enabled = false;
         freeCamFadeIn = false;
 #if UNITY_EDITOR
-        // cinematicTimeline.enabled = false;
+        cinematicTimeline.enabled = false;
 #endif
         canvas.enabled = !cinematicTimeline.enabled;
         cinematicTimeline.Play();
