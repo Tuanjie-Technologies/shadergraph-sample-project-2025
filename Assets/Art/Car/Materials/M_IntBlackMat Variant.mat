@@ -13,10 +13,11 @@ Material:
   m_Parent: {fileID: 2100000, guid: 2530de1c97ac3ae46979d85a1b7e7dad, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _CAMERA_LIGHTING_ON
   - _ENABLE_MASKMAP
   - _ENABLE_NORMALMAP
+  m_InvalidKeywords:
   - _ENVIRONMENTLIGHTING
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

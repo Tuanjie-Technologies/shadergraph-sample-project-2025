@@ -102,6 +102,10 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CAMERA_LIGHTING: 0
+    - _Camera_Lighting_Intensity: 0
+    - _Camera_Lighting_Normal_Intensity: 1
+    - _Camera_Lighting_Roughness: 0.5
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
