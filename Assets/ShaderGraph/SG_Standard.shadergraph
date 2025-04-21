@@ -1887,7 +1887,7 @@
         "m_Id": ""
     },
     "m_SubDatas": [],
-    "m_MasterNodeShaderStats": "Compiling Shader...",
+    "m_MasterNodeShaderStats": "Vertex Shader Stats: \n   - ConstantBuffer Count: 3 \n   - NumSamplers: 0 \n   - Resources Count: 0 \n   - Attributes Used: Position, Normal, Tangent, TexCoord0, TexCoord1 \n\nFragment Shader Stats: \n   - ConstantBuffer Count: 4 \n   - NumSamplers: 1 \n   - Resources Count: 3 \n\nTotal Samplers: 1/16 \nTexture Sample Count: 5 \nCustom Interpolator Count: 0",
     "m_ActiveTargets": [
         {
             "m_Id": "09bac87a88d541239386ab6b8933a5a1"
@@ -6743,7 +6743,7 @@
     "m_ObjectId": "63b57ca1f0844903be37a68748dd1593",
     "m_Title": "Emission",
     "m_Position": {
-        "x": -2033.0001220703125,
+        "x": -2033.0,
         "y": -1637.0
     },
     "m_LoopGroup": false
@@ -10450,7 +10450,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "d0afbda99dd14cc9a5f75917c5e09e70",
     "m_Id": 0,
-    "m_DisplayName": "Float",
+    "m_DisplayName": "Camera Lighting Intensity",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
