@@ -1,4 +1,4 @@
-# SG Sample Project 2025
+# ShaderGraph Sample Project 2025
 
 [![TuanjieVersion](https://img.shields.io/badge/Tuanjie%20Version:-1.5.0-blue)](https://unity.cn/tuanjie/releases)
 
