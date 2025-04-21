@@ -1,4 +1,4 @@
-[sg-sample-project-2025] copyright © 2025 You San Di Technology (Shanghai) Co., Ltd
+[shadergraph-sample-project-2025] copyright © 2025 You San Di Technology (Shanghai) Co., Ltd
 
  
 
