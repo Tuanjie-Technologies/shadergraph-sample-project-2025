@@ -20,7 +20,7 @@
 
 1. 下载或克隆本项目：
    ```bash
-   git clone https://github.com/Tuanjie-Technologies/sg-sample-project-2025.git
+   git clone https://github.com/Tuanjie-Technologies/shadergraph-sample-project-2025.git
    ```
 2. 使用 [团结引擎](https://unity.cn/tuanjie/releases) 打开该项目，引擎版本需为 1.5.0 或以上
 3. 打开场景 `Scenes/SampleScene_Indoor` 即可查看Sample
