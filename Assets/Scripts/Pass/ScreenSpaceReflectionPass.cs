@@ -144,12 +144,20 @@ internal class ScreenSpaceReflectionPass : ScriptableRenderPass
 
 
         GraphicsFormat graphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;
-        cmd.GetTemporaryRT(m_FrontBufferID, width, height, 0, FilterMode.Point, graphicsFormat, 1, featureSettings.UseComputeShader);
-        cmd.GetTemporaryRT(m_BackBufferID, width, height, 0, FilterMode.Point, graphicsFormat, 1, featureSettings.UseComputeShader);
-        cmd.GetTemporaryRT(m_ResolvedBufferID,  width, height, 0, FilterMode.Point, graphicsFormat, 1, featureSettings.UseComputeShader);
-        cmd.GetTemporaryRT(m_HitBufferID, width, height, 0, FilterMode.Point, graphicsFormat, 1, featureSettings.UseComputeShader);
-        graphicsFormat = SystemInfo.GetCompatibleFormat(GraphicsFormat.R8_UNorm, FormatUsage.LoadStore);
-        cmd.GetTemporaryRT(m_AccumBufferID, width, height, 0, FilterMode.Point, graphicsFormat, 1, featureSettings.UseComputeShader);
+        RenderTextureDescriptor desc = new RenderTextureDescriptor(width, height)
+        {
+            graphicsFormat = GraphicsFormat.R16G16B16A16_SFloat,
+            colorFormat = RenderTextureFormat.ARGBHalf,
+            enableRandomWrite = featureSettings.UseComputeShader
+        };
+        cmd.GetTemporaryRT(m_FrontBufferID, desc, FilterMode.Bilinear);
+        cmd.GetTemporaryRT(m_BackBufferID, desc, FilterMode.Bilinear);
+        cmd.GetTemporaryRT(m_ResolvedBufferID, desc, FilterMode.Bilinear);
+        cmd.GetTemporaryRT(m_HitBufferID, desc, FilterMode.Point);
+
+        desc.graphicsFormat = SystemInfo.GetCompatibleFormat(GraphicsFormat.R8_UNorm, FormatUsage.LoadStore);
+        desc.colorFormat = RenderTextureFormat.R8;
+        cmd.GetTemporaryRT(m_AccumBufferID, desc, FilterMode.Bilinear);
 
         int pass = (int)ScreenSpaceRendererFeature.Pass.ResolveLastFrame;
 
@@ -223,7 +231,9 @@ internal class ScreenSpaceReflectionPass : ScriptableRenderPass
         }
         else
         {
-            cmd.GetTemporaryRT(m_TempBufferID, width, height, 0, FilterMode.Point, GraphicsFormat.R16G16B16A16_SFloat, 1, false);
+            desc.graphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;
+            desc.colorFormat = RenderTextureFormat.ARGBHalf;
+            cmd.GetTemporaryRT(m_TempBufferID, desc);
             cmd.SetRenderTarget(m_TempBufferID);
             cmd.SetGlobalTexture("_InputTexture", m_FrontBufferID);
             cmd.SetGlobalTexture("_ResolvedOpaqueTex", m_ResolvedBufferID);
@@ -300,13 +310,14 @@ internal class ScreenSpaceReflectionPass : ScriptableRenderPass
 
         if (featureSettings.DownSample)
         {
-            width = renderingData.cameraData.scaledWidth;
-            height = renderingData.cameraData.scaledHeight;
+            desc.width = renderingData.cameraData.scaledWidth;
+            desc.height = renderingData.cameraData.scaledHeight;
             dispatchW = (width + 8 - 1) / 8;
             dispatchH = (height + 8 - 1) / 8;
-            graphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;
+            desc.graphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;
+            desc.colorFormat = RenderTextureFormat.ARGBHalf;
             pass = (int)ScreenSpaceRendererFeature.Pass.Upsampling;
-            cmd.GetTemporaryRT(m_UpsampledBufferID, width, height, 0, FilterMode.Point, graphicsFormat, 1, featureSettings.UseComputeShader);
+            cmd.GetTemporaryRT(m_UpsampledBufferID, desc, FilterMode.Bilinear);
             if (featureSettings.UseComputeShader)
             {
                 cmd.SetComputeVectorParam(cs, "_DefaultValue", new Vector4(0, 0, 0, 0));

@@ -914,7 +914,7 @@
         "m_Id": ""
     },
     "m_SubDatas": [],
-    "m_MasterNodeShaderStats": "Vertex Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 0 \n   - Resources Count: 0 \n   - Attributes Used: Fragment Shader Stats: \n   - ConstantBuffer Count: 1 \n   - NumSamplers: 1 \n   - Resources Count: 4 \n\nTotal Samplers: 1/16 \nTexture Sample Count: 0 \nCustom Interpolator Count: 0",
+    "m_MasterNodeShaderStats": "Vertex Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 0 \n   - Resources Count: 0 \n   - Attributes Used: Fragment Shader Stats: \n   - ConstantBuffer Count: 1 \n   - NumSamplers: 1 \n   - Resources Count: 1 \n\nTotal Samplers: 1/16 \nTexture Sample Count: 0 \nCustom Interpolator Count: 0",
     "m_ActiveTargets": [
         {
             "m_Id": "74b177148f654640b18a925ab5d93adb"
@@ -938,7 +938,7 @@
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
-    "m_Precision": 0,
+    "m_Precision": 1,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
@@ -1070,7 +1070,7 @@
         "coords",
         "coordinates"
     ],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": false,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -1120,7 +1120,7 @@
         }
     ],
     "synonyms": [],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": false,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -1320,7 +1320,7 @@
             "x": -2657.0,
             "y": -602.0,
             "width": 291.0,
-            "height": 215.00006103515626
+            "height": 214.99996948242188
         }
     },
     "m_Slots": [
@@ -1446,7 +1446,7 @@
         }
     ],
     "synonyms": [],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": true,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -1665,8 +1665,8 @@
     "m_ObjectId": "2a40fb24a28841648422aaf47d81904e",
     "m_Title": "TAA",
     "m_Position": {
-        "x": -3065.333251953125,
-        "y": -660.666748046875
+        "x": -3065.000244140625,
+        "y": -661.0
     },
     "m_LoopGroup": false
 }
@@ -3002,7 +3002,7 @@
         }
     ],
     "synonyms": [],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": true,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -3090,8 +3090,6 @@
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
-    "m_AdditionalMotionVectorMode": 0,
-    "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "",
     "m_SupportVFX": false
@@ -3634,8 +3632,8 @@
     "m_ObjectId": "8aa4befdfe234ac5b3580b43256708df",
     "m_Title": "Tonemapping",
     "m_Position": {
-        "x": -862.666748046875,
-        "y": -334.666748046875
+        "x": -862.0,
+        "y": -335.0
     },
     "m_LoopGroup": false
 }
@@ -3646,8 +3644,8 @@
     "m_ObjectId": "8aec4dc377ad4467ba52673eba08f21f",
     "m_Title": "Color Adjustments",
     "m_Position": {
-        "x": 32.666748046875,
-        "y": -244.666748046875
+        "x": 33.000282287597659,
+        "y": -245.0
     },
     "m_LoopGroup": false
 }
@@ -4282,8 +4280,8 @@
     "m_ObjectId": "b47fc2e7dd5e40c8aa0148e1bf7256ad",
     "m_Title": "Bloom Input",
     "m_Position": {
-        "x": -3074.666748046875,
-        "y": -167.3333740234375
+        "x": -3074.0,
+        "y": -167.99996948242188
     },
     "m_LoopGroup": false
 }
@@ -4476,7 +4474,7 @@
         }
     ],
     "synonyms": [],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": true,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -5094,7 +5092,7 @@
         }
     ],
     "synonyms": [],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": true,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -5160,7 +5158,7 @@
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
-    "m_Precision": 0,
+    "m_Precision": 1,
     "overrideHLSLDeclaration": true,
     "hlslDeclarationOverride": 1,
     "m_Hidden": false,
@@ -5199,7 +5197,7 @@
         }
     ],
     "synonyms": [],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": true,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -5301,8 +5299,8 @@
     "m_ObjectId": "e9cf01a8caeb44c7a4a49c02bffd604e",
     "m_Title": "Original Color",
     "m_Position": {
-        "x": -3074.666748046875,
-        "y": -1102.6666259765625
+        "x": -3074.0,
+        "y": -1103.0
     },
     "m_LoopGroup": false
 }

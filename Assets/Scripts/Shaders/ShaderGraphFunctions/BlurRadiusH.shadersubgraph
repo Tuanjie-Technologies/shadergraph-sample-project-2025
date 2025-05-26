@@ -103,7 +103,7 @@
         "m_Id": "44ba293329ba4a02b18dc82f602fb322"
     },
     "m_SubDatas": [],
-    "m_MasterNodeShaderStats": "",
+    "m_MasterNodeShaderStats": "Vertex Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 0 \n   - Resources Count: 0 \n   - Attributes Used: Position \n\nFragment Shader Stats: \n   - ConstantBuffer Count: 1 \n   - NumSamplers: 0 \n   - Resources Count: 0 \n\nTotal Samplers: 0/16 \nTexture Sample Count: 0 \nCustom Interpolator Count: 0",
     "m_ActiveTargets": []
 }
 
@@ -237,7 +237,7 @@
         "code",
         "HLSL"
     ],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": false,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,

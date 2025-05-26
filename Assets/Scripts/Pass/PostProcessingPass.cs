@@ -99,7 +99,7 @@ namespace UnityEngine.Rendering.Universal
                 {
                     RenderTextureDescriptor taaDesc = desc;
                     taaDesc.enableRandomWrite = settings.UseComputeShader;
-                    cmd.GetTemporaryRT(m_TempTAAID, taaDesc);        
+                    cmd.GetTemporaryRT(m_TempTAAID, taaDesc, FilterMode.Bilinear);        
                     int pass = (int)ScreenSpaceRendererFeature.Pass.TAA;
                     if (settings.UseComputeShader)
                     {
@@ -163,8 +163,8 @@ namespace UnityEngine.Rendering.Universal
                         bloomDesc.height = DownSampledH;
                         bloomDesc.useMipMap = true;
                         bloomDesc.autoGenerateMips = false;
-                        cmd.GetTemporaryRT(m_FrontID, bloomDesc);
-                        cmd.GetTemporaryRT(m_BackID, bloomDesc);
+                        cmd.GetTemporaryRT(m_FrontID, bloomDesc, FilterMode.Bilinear);
+                        cmd.GetTemporaryRT(m_BackID, bloomDesc, FilterMode.Bilinear);
 
                         // prefilter
                         int pass = (int)ScreenSpaceRendererFeature.Pass.BloomPrefilter;

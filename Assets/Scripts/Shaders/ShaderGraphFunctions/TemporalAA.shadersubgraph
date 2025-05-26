@@ -1658,7 +1658,7 @@
         "preventRotation": false
     },
     "m_Path": "Sub Graphs",
-    "m_GraphPrecision": 1,
+    "m_GraphPrecision": 0,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": "1fd7ba7880924325828bca58da08f841"
@@ -3631,7 +3631,7 @@
     "m_ObjectId": "3155cda736ec46e0a39f30c77f7d2380",
     "m_Title": "Frame Influence",
     "m_Position": {
-        "x": -3037.000244140625,
+        "x": -3037.0,
         "y": 2416.0
     },
     "m_LoopGroup": false
@@ -4416,7 +4416,7 @@
         }
     ],
     "synonyms": [],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": false,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -5732,8 +5732,8 @@
     "m_ObjectId": "784ca5cf5906495f9b4b0df23541d74c",
     "m_Title": "Adjust Best Depth Offset",
     "m_Position": {
-        "x": -3007.999755859375,
-        "y": 432.0
+        "x": -3008.000244140625,
+        "y": 432.0001220703125
     },
     "m_LoopGroup": false
 }
@@ -6105,8 +6105,8 @@
     "m_ObjectId": "8ba7ace49e434c9faab0e4a620122ed8",
     "m_Title": "Adjust Color Box",
     "m_Position": {
-        "x": -3000.999755859375,
-        "y": -332.0
+        "x": -3001.000244140625,
+        "y": -332.00006103515627
     },
     "m_LoopGroup": false
 }
@@ -7000,8 +7000,8 @@
     "m_ObjectId": "a95a1e4ca68245de8b1536791d0d9b1d",
     "m_Title": "Clamp Accum",
     "m_Position": {
-        "x": -3034.999755859375,
-        "y": 1869.0
+        "x": -3035.000244140625,
+        "y": 1869.000244140625
     },
     "m_LoopGroup": false
 }
@@ -7781,8 +7781,8 @@
     "m_ObjectId": "cfc34b9e6439430f8fb3fcf99ab4e2bb",
     "m_Title": "Center Color",
     "m_Position": {
-        "x": -3006.999755859375,
-        "y": -735.000244140625
+        "x": -3007.000244140625,
+        "y": -735.0000610351563
     },
     "m_LoopGroup": false
 }
@@ -8351,8 +8351,8 @@
     "m_ObjectId": "df5f898d216041808675e4bf76938772",
     "m_Title": "Motion Vector",
     "m_Position": {
-        "x": -2995.999755859375,
-        "y": 1298.0
+        "x": -2996.000244140625,
+        "y": 1298.000244140625
     },
     "m_LoopGroup": false
 }
@@ -8388,7 +8388,7 @@
         "reorder",
         "component mask"
     ],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": false,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -8584,7 +8584,7 @@
         "invert",
         "opposite"
     ],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": false,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,

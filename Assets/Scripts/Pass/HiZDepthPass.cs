@@ -10,6 +10,7 @@ namespace UnityEngine.Rendering.Universal
         ComputeShader cs;
         Material m_HiZDepthMaterial;
         GlobalKeyword initializeDepth = GlobalKeyword.Create("_INITDEPTH");
+        GlobalKeyword copyDepth = GlobalKeyword.Create("_COPYDEPTH");
         static int m_HiZDepthID = Shader.PropertyToID("_HiZDepthBuffer");
         static int m_TempDepth = Shader.PropertyToID("_TempDepth");
         static string m_SamplerName = "HiZ Depth";
@@ -51,6 +52,7 @@ namespace UnityEngine.Rendering.Universal
             RenderTextureDescriptor desc = new RenderTextureDescriptor(width, height)
             {
                 graphicsFormat = GraphicsFormatUtility.GetLinearFormat(GraphicsFormat.R32_SFloat),
+                colorFormat = RenderTextureFormat.RFloat,
                 enableRandomWrite = settings.UseComputeShader,
                 useMipMap = true,
                 autoGenerateMips = false,
@@ -76,6 +78,7 @@ namespace UnityEngine.Rendering.Universal
                 {
                     cmd.SetRenderTarget(m_HiZDepthID, 0);
                     cmd.SetKeyword(initializeDepth, true);
+                    cmd.SetKeyword(copyDepth, false);
                     cmd.SetGlobalVector("_HiZDepthParams", new Vector4(width, height, 1.0f / width, 1.0f / height));
                     cmd.DrawProcedural(Matrix4x4.identity, m_HiZDepthMaterial, 0, MeshTopology.Triangles, 4);
                 }
@@ -100,10 +103,16 @@ namespace UnityEngine.Rendering.Universal
                         cmd.SetRenderTarget(m_TempDepth);
                         cmd.SetGlobalVector("_HiZDepthParams", new Vector4(width, height, 1.0f / width, 1.0f / height));
                         cmd.SetGlobalInt("_MipLevel", i - 1);
-                        cmd.SetGlobalTexture("_InputDepthTexture", m_HiZDepthID);
+                        cmd.SetGlobalTexture("_HiZDepthTexture", m_HiZDepthID);
                         cmd.SetKeyword(initializeDepth, false);
+                        cmd.SetKeyword(copyDepth, false);
                         cmd.DrawProcedural(Matrix4x4.identity, m_HiZDepthMaterial, 0, MeshTopology.Triangles, 4);
-                        cmd.CopyTexture(m_TempDepth, 0, 0, m_HiZDepthID, 0, i);
+
+                        cmd.SetRenderTarget(m_HiZDepthID, i);
+                        cmd.SetKeyword(copyDepth, true);
+                        cmd.SetGlobalTexture("_HiZDepthTexture", m_TempDepth);
+                        cmd.DrawProcedural(Matrix4x4.identity, m_HiZDepthMaterial, 0, MeshTopology.Triangles, 4);
+                        //cmd.CopyTexture(m_TempDepth, 0, 0, m_HiZDepthID, 0, i);
                         cmd.ReleaseTemporaryRT(m_TempDepth);
                     }
                 }

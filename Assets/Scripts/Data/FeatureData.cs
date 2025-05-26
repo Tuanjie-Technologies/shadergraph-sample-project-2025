@@ -47,12 +47,14 @@ namespace UnityEngine.Rendering.Universal
                 desc = new RenderTextureDescriptor(width, height)
                 {
                     graphicsFormat = desc.graphicsFormat,
-                    enableRandomWrite = settings.UseComputeShader
+                    colorFormat = desc.colorFormat,
+                    enableRandomWrite = settings.UseComputeShader,
+                    depthStencilFormat = 0
                 };
             }
 
             if (settings.EnableTAA)
-                RenderingUtils.ReAllocateIfNeeded(ref m_HistoryTAAResult, desc);
+                RenderingUtils.ReAllocateIfNeeded(ref m_HistoryTAAResult, desc, filterMode: FilterMode.Bilinear);
             else
                 ReleaseTAAHandle();
 
@@ -60,17 +62,19 @@ namespace UnityEngine.Rendering.Universal
             if (settings.EnableSSR)
             {
                 desc.enableRandomWrite = settings.UseComputeShader;
-                RenderingUtils.ReAllocateIfNeeded(ref m_HistoryOpaque, desc);
+                RenderingUtils.ReAllocateIfNeeded(ref m_HistoryOpaque, desc, filterMode: FilterMode.Bilinear);
                 if (settings.DownSample)
                 {
                     desc.width = width >> 1;
                     desc.height = height >> 1;
                 }
                 desc.enableRandomWrite = settings.UseComputeShader;
-                desc.graphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;              
-                RenderingUtils.ReAllocateIfNeeded(ref m_HistoryReflectionResult, desc);
+                desc.graphicsFormat = SystemInfo.GetCompatibleFormat(GraphicsFormat.R16G16B16A16_SFloat, FormatUsage.LoadStore);
+                desc.colorFormat = RenderTextureFormat.ARGBHalf;            
+                RenderingUtils.ReAllocateIfNeeded(ref m_HistoryReflectionResult, desc, filterMode: FilterMode.Bilinear);
                 desc.graphicsFormat = SystemInfo.GetCompatibleFormat(GraphicsFormat.R8_UNorm, FormatUsage.LoadStore);
-                RenderingUtils.ReAllocateIfNeeded(ref m_HistoryReflectionAccum, desc);
+                desc.colorFormat = RenderTextureFormat.R8;
+                RenderingUtils.ReAllocateIfNeeded(ref m_HistoryReflectionAccum, desc, filterMode: FilterMode.Bilinear);
             }
             else
             {
@@ -84,7 +88,8 @@ namespace UnityEngine.Rendering.Universal
                 desc = new RenderTextureDescriptor(width, height)
                 {
                     enableRandomWrite = settings.UseComputeShader,
-                    graphicsFormat = SystemInfo.GetCompatibleFormat(GraphicsFormat.R8_UNorm, FormatUsage.LoadStore)
+                    graphicsFormat = SystemInfo.GetCompatibleFormat(GraphicsFormat.R8_UNorm, FormatUsage.LoadStore),
+                    colorFormat = RenderTextureFormat.R8
                 };
 
                 if (settings.SSAO_DownSample)
@@ -92,7 +97,7 @@ namespace UnityEngine.Rendering.Universal
                     desc.width  = width >> 1;
                     desc.height = height >> 1;
                 }
-                RenderingUtils.ReAllocateIfNeeded(ref m_HistoryOcclusionResult, desc);
+                RenderingUtils.ReAllocateIfNeeded(ref m_HistoryOcclusionResult, desc, filterMode: FilterMode.Bilinear);
             }
             else
                 ReleaseOcclusionHandle();
@@ -102,6 +107,7 @@ namespace UnityEngine.Rendering.Universal
             {
                 desc.width = width; desc.height = height;
                 desc.graphicsFormat = GraphicsFormat.R32_SFloat;
+                desc.colorFormat = RenderTextureFormat.RFloat;
                 desc.enableRandomWrite = settings.UseComputeShader;
                 RenderingUtils.ReAllocateIfNeeded(ref m_HistoryDepth, desc);
             }

@@ -127,9 +127,15 @@ internal class ScreenSpaceAmbientOcclusionPass : ScriptableRenderPass
             cmd.SetGlobalVector("_BlueNoiseParams", new Vector4(m_BlueNoise.width, m_BlueNoise.height, 1.0f / m_BlueNoise.width, 1.0f / m_BlueNoise.height));
         }
 
+        RenderTextureDescriptor desc = new RenderTextureDescriptor(width, height)
+        {
+            graphicsFormat = SystemInfo.GetCompatibleFormat(GraphicsFormat.R8_UNorm, FormatUsage.LoadStore),
+            colorFormat = RenderTextureFormat.R8,
+            enableRandomWrite = featureSettings.UseComputeShader
+        };
         GraphicsFormat graphicsFormat = SystemInfo.GetCompatibleFormat(GraphicsFormat.R8_UNorm, FormatUsage.LoadStore);
-        cmd.GetTemporaryRT(m_FrontBufferID, width, height, 0, FilterMode.Bilinear, graphicsFormat, 1, featureSettings.UseComputeShader);
-        cmd.GetTemporaryRT(m_BackBufferID, width, height, 0, FilterMode.Bilinear, graphicsFormat, 1, featureSettings.UseComputeShader);
+        cmd.GetTemporaryRT(m_FrontBufferID, desc, FilterMode.Bilinear);
+        cmd.GetTemporaryRT(m_BackBufferID, desc, FilterMode.Bilinear);
 
         int pass = (int)ScreenSpaceRendererFeature.Pass.SSAO;
         if (featureSettings.UseComputeShader)
@@ -225,7 +231,9 @@ internal class ScreenSpaceAmbientOcclusionPass : ScriptableRenderPass
             dispatchH = (height + 8 - 1) / 8;
             graphicsFormat = SystemInfo.GetCompatibleFormat(GraphicsFormat.R8_UNorm, FormatUsage.LoadStore);
             pass = (int)ScreenSpaceRendererFeature.Pass.Upsampling;
-            cmd.GetTemporaryRT(m_UpsampledBufferID, width, height, 0, FilterMode.Bilinear, graphicsFormat, 1, featureSettings.UseComputeShader);
+            desc.width = width;
+            desc.height = height;
+            cmd.GetTemporaryRT(m_UpsampledBufferID, desc, FilterMode.Bilinear);
             if (featureSettings.UseComputeShader)
             {
                 cmd.SetComputeVectorParam(cs, "_DefaultValue", new Vector4(1, 0, 0, 0));

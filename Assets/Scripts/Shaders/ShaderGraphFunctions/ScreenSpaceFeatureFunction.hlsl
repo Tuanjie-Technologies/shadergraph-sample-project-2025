@@ -65,6 +65,22 @@ void HiZSearchDepth_half(half2 id, half2 rayStep, half level, out half depth, ou
     uint2 brickID = (ID + (uint2)rayStep) << (uint)level;
     outputBrickID = brickID;
 }
+void ReverseZ_float(float inputDepth, out float depth)
+{
+    #if UNITY_REVERSED_Z
+    depth = inputDepth;
+    #else
+    depth = 1 - inputDepth;
+    #endif
+}
+void ReverseZ_half(half inputDepth, out half depth)
+{
+    #if UNITY_REVERSED_Z
+    depth = inputDepth;
+    #else
+    depth = 1 - inputDepth;
+    #endif
+}
 void WorldToCamera_float(float3 normal, out float3 normalVS)
 {
     normalVS = mul(unity_WorldToCamera, half4(normal, 0)).xyz;

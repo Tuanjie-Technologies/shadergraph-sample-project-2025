@@ -1869,7 +1869,7 @@
         "m_Id": ""
     },
     "m_SubDatas": [],
-    "m_MasterNodeShaderStats": "",
+    "m_MasterNodeShaderStats": "Vertex Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 0 \n   - Resources Count: 0 \n   - Attributes Used: Fragment Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 1 \n   - Resources Count: 3 \n\nTotal Samplers: 1/16 \nTexture Sample Count: 1 \nCustom Interpolator Count: 0",
     "m_ActiveTargets": [
         {
             "m_Id": "9eadcc5a741a481a843b3da78d8b9425"
@@ -4014,10 +4014,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1098.0001220703125,
-            "y": 634.0000610351563,
-            "width": 245.00006103515626,
-            "height": 76.99993896484375
+            "x": -1072.0,
+            "y": 638.0,
+            "width": 244.9998779296875,
+            "height": 77.0
         }
     },
     "m_Slots": [
@@ -4487,10 +4487,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -23.33330726623535,
-            "y": 329.3334655761719,
-            "width": 271.3332214355469,
-            "height": 78.66656494140625
+            "x": -25.0,
+            "y": 330.0000305175781,
+            "width": 270.0,
+            "height": 76.99996948242188
         }
     },
     "m_Slots": [
@@ -6953,7 +6953,7 @@
     "m_ObjectId": "85ac1c9a459c489d9456c160652ce620",
     "m_Title": "BlueNoise",
     "m_Position": {
-        "x": -264.6666564941406,
+        "x": -263.999755859375,
         "y": -590.0
     },
     "m_LoopGroup": false
@@ -6971,10 +6971,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1097.3333740234375,
-            "y": 734.6666259765625,
-            "width": 147.33331298828126,
-            "height": 138.66668701171876
+            "x": -1082.0,
+            "y": 744.0000610351563,
+            "width": 145.0,
+            "height": 135.99993896484376
         }
     },
     "m_Slots": [
@@ -7721,8 +7721,8 @@
     "m_ObjectId": "97c7cbe8a8ac48948e2559b387d201ec",
     "m_Title": "Reconstruct Data",
     "m_Position": {
-        "x": -1919.333251953125,
-        "y": 575.3333740234375
+        "x": -1919.0,
+        "y": 579.0
     },
     "m_LoopGroup": false
 }
@@ -7862,8 +7862,6 @@
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
-    "m_AdditionalMotionVectorMode": 0,
-    "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "",
     "m_SupportVFX": false
@@ -8816,7 +8814,7 @@
     "m_ObjectId": "b0f9af47219b4de2a0a89b2eea141411",
     "m_Title": "ID Offset",
     "m_Position": {
-        "x": -1888.6666259765625,
+        "x": -1887.9998779296875,
         "y": -788.0000610351563
     },
     "m_LoopGroup": false
@@ -9092,8 +9090,8 @@
     "m_ObjectId": "b4962f2abe7343e4bb3461e2adc439cf",
     "m_Title": "Real UV",
     "m_Position": {
-        "x": -1891.3333740234375,
-        "y": -67.99992370605469
+        "x": -1890.9998779296875,
+        "y": -68.0
     },
     "m_LoopGroup": false
 }
@@ -10728,10 +10726,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -936.6666259765625,
-            "y": 734.6666259765625,
-            "width": 242.6666259765625,
-            "height": 78.66668701171875
+            "x": -920.9999389648438,
+            "y": 744.0000610351563,
+            "width": 240.99993896484376,
+            "height": 76.99993896484375
         }
     },
     "m_Slots": [
