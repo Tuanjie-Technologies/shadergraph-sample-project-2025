@@ -6953,7 +6953,7 @@
     "m_ObjectId": "85ac1c9a459c489d9456c160652ce620",
     "m_Title": "BlueNoise",
     "m_Position": {
-        "x": -263.999755859375,
+        "x": -264.0,
         "y": -590.0
     },
     "m_LoopGroup": false
@@ -6993,7 +6993,7 @@
         "greater than",
         "less than"
     ],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": true,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -8814,8 +8814,8 @@
     "m_ObjectId": "b0f9af47219b4de2a0a89b2eea141411",
     "m_Title": "ID Offset",
     "m_Position": {
-        "x": -1887.9998779296875,
-        "y": -788.0000610351563
+        "x": -1888.0001220703125,
+        "y": -788.0001220703125
     },
     "m_LoopGroup": false
 }
@@ -9091,7 +9091,7 @@
     "m_Title": "Real UV",
     "m_Position": {
         "x": -1890.9998779296875,
-        "y": -68.0
+        "y": -68.00001525878906
     },
     "m_LoopGroup": false
 }

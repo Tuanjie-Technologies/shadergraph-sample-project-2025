@@ -37,6 +37,8 @@ namespace UnityEngine.Rendering.Universal
         static int m_TempTAAID = Shader.PropertyToID("_TAATempTexture");
         static int m_FrontID = Shader.PropertyToID("_FrontTempTexture");
         static int m_BackID = Shader.PropertyToID("_BackTempTexture");
+        static int m_TempBloomID = Shader.PropertyToID("_BloomTempTexture");
+
         private ProfilingSampler m_ProfilingSampler = new ProfilingSampler(samplerName);
 
 
@@ -98,7 +100,6 @@ namespace UnityEngine.Rendering.Universal
                 if (activeTAA)
                 {
                     RenderTextureDescriptor taaDesc = desc;
-                    taaDesc.enableRandomWrite = settings.UseComputeShader;
                     cmd.GetTemporaryRT(m_TempTAAID, taaDesc, FilterMode.Bilinear);        
                     int pass = (int)ScreenSpaceRendererFeature.Pass.TAA;
                     if (settings.UseComputeShader)
@@ -113,6 +114,7 @@ namespace UnityEngine.Rendering.Universal
                     else
                     {
                         cmd.SetKeyword(taa, true);
+                        cmd.SetComputeVectorParam(cs, "_PostProcessingParams", new Vector4(width, height, 1.0f / width, 1.0f / height));
                         cmd.SetGlobalFloat("_TaaFrameInfluence", settings.FrameInfluencer);
                         cmd.SetGlobalTexture("_SourceTexture", renderingData.cameraData.renderer.cameraColorTargetHandle);
                         cmd.SetGlobalTexture("_HistoryTexture", data.m_HistoryTAAResult);
@@ -165,6 +167,8 @@ namespace UnityEngine.Rendering.Universal
                         bloomDesc.autoGenerateMips = false;
                         cmd.GetTemporaryRT(m_FrontID, bloomDesc, FilterMode.Bilinear);
                         cmd.GetTemporaryRT(m_BackID, bloomDesc, FilterMode.Bilinear);
+                        if (!settings.UseComputeShader)
+                            cmd.GetTemporaryRT(m_TempBloomID, bloomDesc, FilterMode.Bilinear);
 
                         // prefilter
                         int pass = (int)ScreenSpaceRendererFeature.Pass.BloomPrefilter;
@@ -235,11 +239,12 @@ namespace UnityEngine.Rendering.Universal
                         }
 
                         // upsample
-                        for(; i >= 1; i--)
+                        bool swapped = false;
+                        for (; i >= 1; i--)
                         {
                             BloomW = DownSampledW >> (i - 1); BloomH = DownSampledH >> (i - 1);
                             int BloomDispatchW = (BloomW + 8 - 1) / 8;
-                            int BloomDispatchH = (BloomH  + 8 - 1) / 8;
+                            int BloomDispatchH = (BloomH + 8 - 1) / 8;
 
                             if (settings.UseComputeShader)
                             {
@@ -256,15 +261,16 @@ namespace UnityEngine.Rendering.Universal
                                 cmd.SetGlobalVector("_BloomParams", new Vector4(BloomW, BloomH, 1.0f / BloomW, 1.0f / BloomH));
                                 cmd.SetGlobalInt("_MipLevel", i);
                                 cmd.SetGlobalInt("_SwapBuffer", swapBuffer ? 1 : 0);
-                                cmd.SetGlobalTexture("_SourceTexture", swapBuffer ? m_BackID : m_FrontID);
-                                cmd.SetRenderTarget(swapBuffer ? m_FrontID : m_BackID, i - 1);
+                                cmd.SetGlobalTexture("_SourceTexture", !swapped ? m_FrontID : swapBuffer ? m_BackID : m_TempBloomID);
+                                cmd.SetGlobalTexture("_HighResTexture", m_FrontID);
+                                cmd.SetRenderTarget(swapBuffer ? m_TempBloomID : m_BackID, i - 1);
                                 cmd.SetKeyword(prefilter, false);
                                 cmd.SetKeyword(blurH, false);
                                 cmd.SetKeyword(blurV, false);
                                 cmd.SetKeyword(upsampling, true);
                                 cmd.DrawProcedural(Matrix4x4.identity, m_BloomMat, 0, MeshTopology.Triangles, 4);
                             }
-                            
+                            swapped = true;
                             swapBuffer = !swapBuffer;
                         }
 
@@ -384,18 +390,20 @@ namespace UnityEngine.Rendering.Universal
                             }
                         }
                         if (activeBloom)
-                            cmd.SetGlobalTexture("_InputTexture", swapBuffer ? m_BackID : m_FrontID);
+                            cmd.SetGlobalTexture("_InputTexture", swapBuffer ? m_BackID : m_TempBloomID);
                         cmd.DrawProcedural(Matrix4x4.identity, m_Material, 0, MeshTopology.Triangles, 4);
                     }
                 }
 
                 cmd.SetRenderTarget(renderingData.cameraData.renderer.cameraColorTargetHandle);
                 Blitter.BlitTexture(cmd, (!activeBloom && !activeTonemapping) ? data.m_HistoryTAAResult : m_CopiedColor, new Vector4(1, 1, 0, 0), 0, false);
- 
+
                 if (activeBloom)
                 {
                     cmd.ReleaseTemporaryRT(m_FrontID);
                     cmd.ReleaseTemporaryRT(m_BackID);
+                    if (!settings.UseComputeShader)
+                        cmd.ReleaseTemporaryRT(m_TempBloomID);
                 }
             }
 

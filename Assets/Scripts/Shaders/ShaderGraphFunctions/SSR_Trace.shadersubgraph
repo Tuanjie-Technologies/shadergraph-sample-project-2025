@@ -1314,7 +1314,7 @@
         "m_Id": "469eb29eb178454ba8c879ab907e20fd"
     },
     "m_SubDatas": [],
-    "m_MasterNodeShaderStats": "Vertex Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 0 \n   - Resources Count: 0 \n   - Attributes Used: Position \n\nFragment Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 0 \n   - Resources Count: 1 \n\nTotal Samplers: 0/16 \nTexture Sample Count: 0 \nCustom Interpolator Count: 0",
+    "m_MasterNodeShaderStats": "Shader has error...",
     "m_ActiveTargets": []
 }
 
@@ -2243,7 +2243,7 @@
         "vec3",
         "float3"
     ],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": true,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -2762,7 +2762,7 @@
     "m_Title": "Reflect Dir",
     "m_Position": {
         "x": -2718.0,
-        "y": -371.0
+        "y": -370.9999694824219
     },
     "m_LoopGroup": false
 }
@@ -2856,7 +2856,7 @@
     },
     "m_SourceType": 0,
     "m_FunctionName": "ReverseZ",
-    "m_FunctionSource": "9cfe36cd1cf97d34bba99772afdbe8e5",
+    "m_FunctionSource": "7d1bd758d8209764d9a8963d64761e7c",
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -3826,7 +3826,7 @@
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
-    "m_Precision": 0,
+    "m_Precision": 1,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
@@ -5304,7 +5304,7 @@
         }
     ],
     "synonyms": [],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": true,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -5970,7 +5970,7 @@
         "code",
         "HLSL"
     ],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": false,
     "m_NodeLOD": 0,
     "m_DismissedVersion": 0,
@@ -5980,7 +5980,7 @@
     },
     "m_SourceType": 0,
     "m_FunctionName": "ReverseZ",
-    "m_FunctionSource": "9cfe36cd1cf97d34bba99772afdbe8e5",
+    "m_FunctionSource": "7d1bd758d8209764d9a8963d64761e7c",
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -6453,8 +6453,8 @@
     "m_ObjectId": "c3581df1093b4c58bc426ed2da9a9e68",
     "m_Title": "Setup Ray",
     "m_Position": {
-        "x": -3154.0,
-        "y": 349.0
+        "x": -3154.000244140625,
+        "y": 349.0001220703125
     },
     "m_LoopGroup": false
 }

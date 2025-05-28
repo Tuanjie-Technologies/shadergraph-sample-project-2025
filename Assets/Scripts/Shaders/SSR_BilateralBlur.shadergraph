@@ -1717,7 +1717,7 @@
         "m_Id": ""
     },
     "m_SubDatas": [],
-    "m_MasterNodeShaderStats": "",
+    "m_MasterNodeShaderStats": "Vertex Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 0 \n   - Resources Count: 0 \n   - Attributes Used: Fragment Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 2 \n   - Resources Count: 4 \n\nTotal Samplers: 1/16 \nTexture Sample Count: 1 \nCustom Interpolator Count: 0",
     "m_ActiveTargets": [
         {
             "m_Id": "ea36d169c9a84a7ba54b5b06a4c49e29"
@@ -2037,7 +2037,7 @@
     "m_ObjectId": "096cc0318a0b4b4fa3e98e63c8965504",
     "m_Title": "For Loop",
     "m_Position": {
-        "x": -4448.6669921875,
+        "x": -4448.00048828125,
         "y": 1500.0001220703125
     },
     "m_LoopGroup": true
@@ -2242,8 +2242,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3973.0,
-            "y": 2144.0,
+            "x": -3973.000244140625,
+            "y": 2143.0,
             "width": 277.0,
             "height": 263.0
         }
@@ -2309,6 +2309,20 @@
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
+    "m_ObjectId": "107935707e734cc7880f2eda781bb608",
+    "m_Id": 5,
+    "m_DisplayName": "Continue",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Continue",
+    "m_StageCapability": 3,
+    "m_Value": false,
+    "m_DefaultValue": false
 }
 
 {
@@ -2431,20 +2445,6 @@
         "z": 0.0,
         "w": 0.0
     }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
-    "m_ObjectId": "15a08af3710f472dacbcef635589431a",
-    "m_Id": 6,
-    "m_DisplayName": "Break",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Break",
-    "m_StageCapability": 3,
-    "m_Value": false,
-    "m_DefaultValue": false
 }
 
 {
@@ -3656,20 +3656,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
-    "m_ObjectId": "3481d7529f844b80aa3ad5e62bc68338",
-    "m_Id": 5,
-    "m_DisplayName": "Continue",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Continue",
-    "m_StageCapability": 3,
-    "m_Value": false,
-    "m_DefaultValue": false
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.MultiplyNode",
     "m_ObjectId": "35bc1b7ad17b4b88ad3fdcb9f5d2812e",
     "m_Group": {
@@ -4767,7 +4753,7 @@
             "serializedVersion": "2",
             "x": -4166.0,
             "y": 1568.0,
-            "width": 285.999755859375,
+            "width": 286.0,
             "height": 94.0
         }
     },
@@ -4793,7 +4779,7 @@
     },
     "m_SourceType": 0,
     "m_FunctionName": "GetPoissonDiskSample",
-    "m_FunctionSource": "9cfe36cd1cf97d34bba99772afdbe8e5",
+    "m_FunctionSource": "7d1bd758d8209764d9a8963d64761e7c",
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -4818,8 +4804,8 @@
     "m_ObjectId": "56b46197862c4a49abd06f5034fe0ca9",
     "m_Title": "Center Data",
     "m_Position": {
-        "x": -4473.33349609375,
-        "y": -86.66667175292969
+        "x": -4473.00048828125,
+        "y": -86.99991607666016
     },
     "m_LoopGroup": false
 }
@@ -5335,8 +5321,8 @@
     "m_ObjectId": "65c66eed7433422f9414b0eb496ea01e",
     "m_Title": "Local Frame",
     "m_Position": {
-        "x": -4489.33349609375,
-        "y": 1074.0001220703125
+        "x": -4489.00048828125,
+        "y": 1074.0
     },
     "m_LoopGroup": false
 }
@@ -7042,6 +7028,20 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
+    "m_ObjectId": "9dbcef3ceca84e1f98031bb57083e190",
+    "m_Id": 6,
+    "m_DisplayName": "Break",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Break",
+    "m_StageCapability": 3,
+    "m_Value": false,
+    "m_DefaultValue": false
 }
 
 {
@@ -10052,8 +10052,6 @@
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
-    "m_AdditionalMotionVectorMode": 0,
-    "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "",
     "m_SupportVFX": false
@@ -10501,10 +10499,10 @@
             "m_Id": "84f789c69f5a4635b6333a83581adb67"
         },
         {
-            "m_Id": "3481d7529f844b80aa3ad5e62bc68338"
+            "m_Id": "107935707e734cc7880f2eda781bb608"
         },
         {
-            "m_Id": "15a08af3710f472dacbcef635589431a"
+            "m_Id": "9dbcef3ceca84e1f98031bb57083e190"
         }
     ],
     "synonyms": [
@@ -10827,8 +10825,8 @@
     "m_ObjectId": "ffe6b7bb19044ea4a1013a3ead4504b8",
     "m_Title": "Blur Radius",
     "m_Position": {
-        "x": -4490.6669921875,
-        "y": 479.33331298828127
+        "x": -4490.00048828125,
+        "y": 479.0
     },
     "m_LoopGroup": false
 }

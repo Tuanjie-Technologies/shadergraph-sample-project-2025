@@ -1096,20 +1096,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
-    "m_ObjectId": "0bf0836f639a4844aef558757f39668e",
-    "m_Id": 6,
-    "m_DisplayName": "Break",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Break",
-    "m_StageCapability": 3,
-    "m_Value": false,
-    "m_DefaultValue": false
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "0c1c255aada641619ef0089afcbab848",
     "m_Id": 2,
@@ -1510,7 +1496,7 @@
     },
     "m_SourceType": 0,
     "m_FunctionName": "Offset8TapWithWeight",
-    "m_FunctionSource": "9cfe36cd1cf97d34bba99772afdbe8e5",
+    "m_FunctionSource": "7d1bd758d8209764d9a8963d64761e7c",
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -1584,6 +1570,20 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
+    "m_ObjectId": "1ecb81a1cdfa43e8bb3202fd2a1cc4a7",
+    "m_Id": 5,
+    "m_DisplayName": "Continue",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Continue",
+    "m_StageCapability": 3,
+    "m_Value": false,
+    "m_DefaultValue": false
 }
 
 {
@@ -1826,6 +1826,20 @@
         "b": 0.5,
         "a": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
+    "m_ObjectId": "2b1ce35e5c594e1ea601f15c15c9d389",
+    "m_Id": 6,
+    "m_DisplayName": "Break",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Break",
+    "m_StageCapability": 3,
+    "m_Value": false,
+    "m_DefaultValue": false
 }
 
 {
@@ -2414,20 +2428,6 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
-    "m_ObjectId": "413918aaceeb412bb51e45c2a6fb8009",
-    "m_Id": 5,
-    "m_DisplayName": "Continue",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Continue",
-    "m_StageCapability": 3,
-    "m_Value": false,
-    "m_DefaultValue": false
 }
 
 {
@@ -3688,8 +3688,8 @@
     "m_ObjectId": "9b90b63cc78c49bd8d97eb60ce032e68",
     "m_Title": "Original",
     "m_Position": {
-        "x": -2566.000244140625,
-        "y": -538.0000610351563
+        "x": -2566.0,
+        "y": -538.0
     },
     "m_LoopGroup": false
 }
@@ -3976,10 +3976,10 @@
             "m_Id": "3868febfc1394a308e91257112f7687e"
         },
         {
-            "m_Id": "413918aaceeb412bb51e45c2a6fb8009"
+            "m_Id": "1ecb81a1cdfa43e8bb3202fd2a1cc4a7"
         },
         {
-            "m_Id": "0bf0836f639a4844aef558757f39668e"
+            "m_Id": "2b1ce35e5c594e1ea601f15c15c9d389"
         }
     ],
     "synonyms": [
@@ -4359,8 +4359,8 @@
     "m_ObjectId": "c971c2242e8a495783f601909f5c8735",
     "m_Title": "For Loop",
     "m_Position": {
-        "x": -3053.0,
-        "y": -79.99996948242188
+        "x": -3053.000244140625,
+        "y": -80.00000762939453
     },
     "m_LoopGroup": true
 }
