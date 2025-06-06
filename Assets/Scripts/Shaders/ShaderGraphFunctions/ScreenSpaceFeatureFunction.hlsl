@@ -5,7 +5,7 @@
 Texture2D _SSR_Texture;
 #endif
 
-TEXTURE2D(_HiZDepthTexture);
+TEXTURE2D_FLOAT(_HiZDepthTexture);
 #ifndef UNITY_DECLARE_NORMALS_TEXTURE_INCLUDED
 TEXTURE2D(_CameraNormalsTexture);
 #endif
