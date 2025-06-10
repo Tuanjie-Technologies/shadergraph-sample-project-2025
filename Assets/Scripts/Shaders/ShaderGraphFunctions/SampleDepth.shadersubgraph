@@ -89,7 +89,7 @@
         "m_Id": "87e21551164a436ba87d286290751bb5"
     },
     "m_SubDatas": [],
-    "m_MasterNodeShaderStats": "Vertex Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 0 \n   - Resources Count: 0 \n   - Attributes Used: Position \n\nFragment Shader Stats: \n   - ConstantBuffer Count: 1 \n   - NumSamplers: 0 \n   - Resources Count: 1 \n\nTotal Samplers: 0/16 \nTexture Sample Count: 0 \nCustom Interpolator Count: 0",
+    "m_MasterNodeShaderStats": "Vertex Shader Stats: \n   - ConstantBuffer Count: 2 \n   - NumSamplers: 0 \n   - Resources Count: 0 \n   - Attributes Used: Position \n\nFragment Shader Stats: \n   - ConstantBuffer Count: 1 \n   - NumSamplers: 1 \n   - Resources Count: 1 \n\nTotal Samplers: 1/16 \nTexture Sample Count: 0 \nCustom Interpolator Count: 0",
     "m_ActiveTargets": []
 }
 
@@ -113,7 +113,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "01f5717636fe415f96f9957076997f9c",
     "m_Id": 0,
-    "m_DisplayName": "ID",
+    "m_DisplayName": "UV",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -185,10 +185,10 @@
     "m_Guid": {
         "m_GuidSerialized": "d625d8fe-5757-4b44-9502-5235fccae033"
     },
-    "m_Name": "ID",
+    "m_Name": "UV",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "ID",
-    "m_DefaultReferenceName": "_ID",
+    "m_RefNameGeneratedByDisplayName": "UV",
+    "m_DefaultReferenceName": "_UV",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -264,7 +264,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "LoadDepth (Custom Function)",
+    "m_Name": "SampleDepth (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -296,7 +296,7 @@
         "m_SerializableColors": []
     },
     "m_SourceType": 0,
-    "m_FunctionName": "LoadDepth",
+    "m_FunctionName": "SampleDepth",
     "m_FunctionSource": "9cfe36cd1cf97d34bba99772afdbe8e5",
     "m_FunctionBody": "Enter function body here..."
 }

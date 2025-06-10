@@ -95,7 +95,7 @@ Shader "Hidden/Universal Render Pipeline/ObjectMotionVectors"
 
             // -------------------------------------
             // Fragment
-            half4 frag(Varyings input) : SV_Target
+            float4 frag(Varyings input) : SV_Target
             {
                 UNITY_SETUP_INSTANCE_ID(input);
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);

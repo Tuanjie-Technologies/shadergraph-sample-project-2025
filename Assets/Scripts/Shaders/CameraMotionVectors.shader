@@ -62,7 +62,7 @@ Shader "Hidden/Universal Render Pipeline/CameraMotionVectors"
 
             // -------------------------------------
             // Fragment
-            half4 frag(Varyings input, out float outDepth : SV_Depth) : SV_Target
+            float4 frag(Varyings input, out float outDepth : SV_Depth) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
