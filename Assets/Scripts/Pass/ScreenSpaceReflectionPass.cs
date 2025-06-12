@@ -312,8 +312,8 @@ internal class ScreenSpaceReflectionPass : ScriptableRenderPass
         {
             desc.width = renderingData.cameraData.scaledWidth;
             desc.height = renderingData.cameraData.scaledHeight;
-            dispatchW = (width + 8 - 1) / 8;
-            dispatchH = (height + 8 - 1) / 8;
+            dispatchW = (desc.width + 8 - 1) / 8;
+            dispatchH = (desc.height + 8 - 1) / 8;
             desc.graphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;
             desc.colorFormat = RenderTextureFormat.ARGBHalf;
             pass = (int)ScreenSpaceRendererFeature.Pass.Upsampling;
