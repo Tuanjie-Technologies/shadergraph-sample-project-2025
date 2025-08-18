@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.scene
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/SampleScene_Indoor.scene
+    path: Assets/ShaderGraph Sample Demo/Scenes/SampleScene_Indoor.scene
     guid: 1f3f56b6ea347f8458554cf954a280e5
   m_BuildProfiles: []
   m_configObjects: {}
@@ -20,3 +20,4 @@ EditorBuildSettings:
     DecompressETC: 1
     FreeTypeSfntPng: 1
     LightProbe: 2
+    UseStringInternPool: 2
