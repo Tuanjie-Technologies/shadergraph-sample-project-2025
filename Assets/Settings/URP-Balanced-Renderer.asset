@@ -17,7 +17,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   screenSpaceCS: {fileID: 7200000, guid: 1b0ad7ccea0ac9446853a5a41b94aad8, type: 3}
-  m_TonemappingLUT: {fileID: 11700000, guid: a6c45cbe04c066248bbf684df47b3ede, type: 2}
+  HiZDepthShader: {fileID: -6465566751694194690, guid: d39c849c6edcf1f4f9ee4e4ccd57a625,
+    type: 3}
+  ResolveLastFrameShader: {fileID: -6465566751694194690, guid: 4dea6c167c29c194da037877479dc7f8,
+    type: 3}
+  TraceSSRShader: {fileID: -6465566751694194690, guid: a547ae3ccd1007d41a2e59509dd81986,
+    type: 3}
+  SSR_ResolveShader: {fileID: -6465566751694194690, guid: 186ad0bf2c9a5054fbb993affe10d815,
+    type: 3}
+  SSR_TemporalBlendingShader: {fileID: -6465566751694194690, guid: 0f049cded00c90a4f867abaa812684ee,
+    type: 3}
+  SSR_UnpackIntoAccumShader: {fileID: -6465566751694194690, guid: c221280739ed5e746b0b41668ba4aa78,
+    type: 3}
+  SSR_UnpackIntoBufferShader: {fileID: -6465566751694194690, guid: 81732be519863c64e9e669921458b8c5,
+    type: 3}
+  SSR_BilateralBlurShader: {fileID: -6465566751694194690, guid: e4049d273f65017488c640ab6055b2fc,
+    type: 3}
+  TemporalClippingShader: {fileID: -6465566751694194690, guid: 364c96137634bef4eae3dc0954ec19db,
+    type: 3}
+  postProcessingShader: {fileID: -6465566751694194690, guid: ac580013333e30342ad4272dcc7a05db,
+    type: 3}
+  BilateralUpsamplingShader: {fileID: -6465566751694194690, guid: 94167ed439f7a5d49910dd3af333cfc8,
+    type: 3}
+  SSAOShader: {fileID: -6465566751694194690, guid: 3c1a1c82fb8f07d4f9827c80ee0cbcfb,
+    type: 3}
+  BilateralBlurShader: {fileID: -6465566751694194690, guid: d7d278f0130b429499890a200e953941,
+    type: 3}
+  BloomShader: {fileID: -6465566751694194690, guid: d02a3aaa60e9de841a9a89a1ccd46d83,
+    type: 3}
+  LutPrepareShader: {fileID: -6465566751694194690, guid: 727e5d6a4651d6e4e982497c069965a6,
+    type: 3}
   cameraMotionVectorShader: {fileID: 4800000, guid: f621d3a3cb3517244a4970b2f4abce7a,
     type: 3}
   objectMotionVectorShader: {fileID: 4800000, guid: 7721c0baf5f0f1242b1050de07a645bb,
@@ -107,7 +136,7 @@ MonoBehaviour:
   - {fileID: -8882458833165323198}
   m_RendererFeatureMap: 427426a5c02abb84
   m_UseNativeRenderPass: 0
-  postProcessData: {fileID: 0}
+  postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -115,6 +144,7 @@ MonoBehaviour:
     screenSpaceShadowPS: {fileID: 0}
     samplingPS: {fileID: 4800000, guid: 04c410c9937594faa893a11dceb85f7e, type: 3}
     stencilDeferredPS: {fileID: 4800000, guid: e9155b26e1bc55942a41e518703fe304, type: 3}
+    deferredPlusPS: {fileID: 4800000, guid: bbe27b0fca5a0402ba52a7b8fc629e3e, type: 3}
     fallbackErrorPS: {fileID: 4800000, guid: e6e9a19c3678ded42a3bc431ebef7dbd, type: 3}
     fallbackLoadingPS: {fileID: 4800000, guid: 7f888aff2ac86494babad1c2c5daeee2, type: 3}
     materialErrorPS: {fileID: 4800000, guid: 5fd9a8feb75a4b5894c241777f519d4e, type: 3}
@@ -128,6 +158,12 @@ MonoBehaviour:
     objectMotionVector: {fileID: 4800000, guid: 7b3ede40266cd49a395def176e1bc486,
       type: 3}
     dataDrivenLensFlare: {fileID: 4800000, guid: 6cda457ac28612740adb23da5d39ea92,
+      type: 3}
+    terrainDetailLitPS: {fileID: 4800000, guid: f6783ab646d374f94b199774402a5144,
+      type: 3}
+    terrainDetailGrassPS: {fileID: 4800000, guid: e507fdfead5ca47e8b9a768b51c291a1,
+      type: 3}
+    terrainDetailGrassBillboardPS: {fileID: 4800000, guid: 29868e73b638e48ca99a19ea58c48d90,
       type: 3}
   m_AssetVersion: 2
   m_OpaqueLayerMask:
