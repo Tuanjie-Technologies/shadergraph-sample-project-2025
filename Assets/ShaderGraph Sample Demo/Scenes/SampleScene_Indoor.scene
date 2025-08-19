@@ -194,6 +194,7 @@ ReflectionProbe:
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 8
+  m_CustomBlendWeight: 1
   m_CustomBakedTexture: {fileID: 0}
 --- !u!114 &13093516 stripped
 MonoBehaviour:
@@ -260,6 +261,7 @@ ReflectionProbe:
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 1
+  m_CustomBlendWeight: 1
   m_CustomBakedTexture: {fileID: 0}
 --- !u!4 &28796953
 Transform:
@@ -344,6 +346,7 @@ ReflectionProbe:
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 9
+  m_CustomBlendWeight: 1
   m_CustomBakedTexture: {fileID: 0}
 --- !u!223 &471328010 stripped
 Canvas:
@@ -419,6 +422,7 @@ ReflectionProbe:
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 9
+  m_CustomBlendWeight: 1
   m_CustomBakedTexture: {fileID: 0}
 --- !u!1 &541440157
 GameObject:
@@ -718,6 +722,7 @@ ReflectionProbe:
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 1
+  m_CustomBlendWeight: 1
   m_CustomBakedTexture: {fileID: 0}
 --- !u!4 &1165290063
 Transform:
@@ -1143,6 +1148,7 @@ ReflectionProbe:
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 9
+  m_CustomBlendWeight: 1
   m_CustomBakedTexture: {fileID: 0}
 --- !u!1 &1341953583
 GameObject:
@@ -1275,6 +1281,7 @@ ReflectionProbe:
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 9
+  m_CustomBlendWeight: 1
   m_CustomBakedTexture: {fileID: 0}
 --- !u!1 &1975721609
 GameObject:
@@ -1697,7 +1704,7 @@ PrefabInstance:
     - target: {fileID: 7454554813902973295, guid: ba5c5856a2d934d48bbc60ff731a5ef9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.009439552
+      value: -0.00943954
       objectReference: {fileID: 0}
     - target: {fileID: 7454554813902973295, guid: ba5c5856a2d934d48bbc60ff731a5ef9,
         type: 3}
@@ -1707,7 +1714,7 @@ PrefabInstance:
     - target: {fileID: 7454554813902973295, guid: ba5c5856a2d934d48bbc60ff731a5ef9,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.009038493
+      value: -0.009038481
       objectReference: {fileID: 0}
     - target: {fileID: 7460935893948210711, guid: ba5c5856a2d934d48bbc60ff731a5ef9,
         type: 3}
@@ -1762,6 +1769,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 851328895676684150, guid: 91b1be1888dc8724ea844c2afecd16df,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4151574445149569492, guid: 91b1be1888dc8724ea844c2afecd16df,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1847,6 +1859,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0061782594
       objectReference: {fileID: 0}
+    - target: {fileID: 5825440578956584008, guid: 91b1be1888dc8724ea844c2afecd16df,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7398943252031998516, guid: 91b1be1888dc8724ea844c2afecd16df,
         type: 3}
       propertyPath: m_Name
@@ -1885,7 +1902,7 @@ PrefabInstance:
     - target: {fileID: 7995760554944099950, guid: 91b1be1888dc8724ea844c2afecd16df,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0033109689
+      value: 0.0033107072
       objectReference: {fileID: 0}
     - target: {fileID: 7995760554944099950, guid: 91b1be1888dc8724ea844c2afecd16df,
         type: 3}
@@ -1895,7 +1912,7 @@ PrefabInstance:
     - target: {fileID: 7995760554944099950, guid: 91b1be1888dc8724ea844c2afecd16df,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0053627645
+      value: 0.005362241
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
