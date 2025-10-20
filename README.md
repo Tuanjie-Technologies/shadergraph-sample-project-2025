@@ -25,6 +25,7 @@
 2. 使用 [团结引擎](https://unity.cn/tuanjie/releases) 打开该项目，引擎版本需为 1.5.0 或以上
 3. 打开场景 `Scenes/SampleScene_Indoor` 即可查看Sample
 5. 如果 Shader Graph 依赖缺失，请在 Package Manager 中安装 14.1.0 版本
+6. 依赖包：Cinemachine
 
 ## 文档
 
